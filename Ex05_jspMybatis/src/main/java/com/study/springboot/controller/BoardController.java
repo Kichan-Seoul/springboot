@@ -117,6 +117,16 @@ public class BoardController {
 		System.out.println("writer : " + b.getWriter());
 		System.out.println("content : " + b.getContent());
 		
+		boardService.insertBoard(b);
 		return "redirect:list";
 	}
+	
+	@GetMapping("/delete")
+	public String delete(int boardno, Model model) {
+		System.out.println(boardno);
+		
+		return "redirect:list";
+	}
+	
+	
 }
