@@ -5,7 +5,7 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
 	<!-- 영속성 관리 -->    
 	<persistence-unit name="jpaEx01" transaction-type="RESOURCE_LOCAL">
-		<class>풀클래스 이름</class>	
+		<class>exam1.Member1</class>	
 	         
 	
 	<!-- true : 위에 <class>풀클래스 이름</class>에 넣은 클래스만 엔티티로 로딩한다. -->
@@ -30,7 +30,7 @@
 			<!-- <property name="id.new_generator_mappings" value="true"/> -->
 			
 			<!-- insert, select, update, delete, create, create-drop -->
-			<property name="hibernate.hbm2ddl.auto" value="create-drop" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<!-- 
 			create : 애플리케이션이 시작할 때 기존 테이블을 삭제하고 새로 생성
 			create-drop : create와 비슷하지만, 삭제는 애플리케이션이 종료될 때 테이블 삭제
