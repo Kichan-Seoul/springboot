@@ -21,6 +21,13 @@ function App() {
 
   useEffect(() => {
     const stored = localStorage.getItem('isLoggedIn');
+    // 💡 개발용 우회: DB 없이도 로그인 상태로 진입
+    // const isDevMode = true; // ← 필요 없을 때 false로 바꾸면 원래대로 돌아옴
+    // if (isDevMode) {
+    //   setIsLoggedIn(true);
+    //   setIsAuthLoaded(true);
+    //   return;
+    // }
     if (stored === 'true') {
       setIsLoggedIn(true);
     }
