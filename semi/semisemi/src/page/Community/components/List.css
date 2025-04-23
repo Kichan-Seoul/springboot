@@ -1,8 +1,57 @@
-.List {
+/* 전체 리스트 컨테이너 */
+.list-container {
     display: flex;
-    justify-content: center;   
-}
-
-.listTable {
-    width: 1000px;
-}
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+  }
+  
+  /* 각 게시글 항목 */
+  .list-item {
+    background-color: #cce1f2 !important;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease; 
+    width: 100%;
+    max-width: 800px;
+  }
+  
+  /* 리스트 항목 호버 효과 */
+  .list-item:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px); 
+  }
+  
+  /* 게시글 제목 */
+  .list-item h2 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  
+  /* 게시글 내용 */
+  .list-item p {
+    font-size: 1rem;
+    color: #555; 
+    line-height: 1.6;
+    margin-bottom: 0.8rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  /* 링크 스타일 */
+  .post-link {
+    text-decoration: none !important; 
+    color: #333;
+  }
+  
+  /* 링크 호버 효과 */
+  .post-link:hover {
+    color: #3d509a; 
+  }
+  

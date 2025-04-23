@@ -48,6 +48,6 @@ public class User {
     @Column(name = "PROFILE_IMAGE_URL")
     private String profileImageUrl;
 
-    @Column(name = "CALORIES_BURNED") // ✅ 추가된 부분
+    @Column(name = "CALORIES_BURNED") // 추가된 부분
     private Integer caloriesBurned;
 }

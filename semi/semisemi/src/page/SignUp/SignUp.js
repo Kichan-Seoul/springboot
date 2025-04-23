@@ -67,6 +67,7 @@ const SignUp = () => {
   };
 
   return (
+    <div className="sign-up-wrapper">
     <div className="sign-up-container">
       <h2>회원가입</h2>
       <form onSubmit={handleSubmit}>
@@ -142,10 +143,17 @@ const SignUp = () => {
             className={selectedCharacter === 2 ? "selected" : ""}
             onClick={() => handleCharacterSelect(2)}
           />
+          <img
+            src="https://via.placeholder.com/70?text=Char4"
+            alt="Character 4"
+            className={selectedCharacter === 3 ? "selected" : ""}
+            onClick={() => handleCharacterSelect(3)}
+          />
         </div>
 
         <button type="submit">회원가입</button>
       </form>
+      </div>
     </div>
   );
 };

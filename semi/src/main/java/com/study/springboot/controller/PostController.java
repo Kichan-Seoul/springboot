@@ -43,7 +43,7 @@ public class PostController {
             Post savedPost = postRepository.save(post);  // id 자동 생성
 
             // PostDTO 생성하여 반환
-            PostDTO postDTO = new PostDTO(savedPost.getId(), savedPost.getTitle(), savedPost.getContent(), user.getName());
+            PostDTO postDTO = new PostDTO(savedPost.getId(), savedPost.getTitle(), savedPost.getContent(), user.getName(), user.getUserId());
             return new ResponseEntity<>(postDTO, HttpStatus.CREATED); // 201 상태 코드
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class PostController {
             }
 
             List<PostDTO> postDTOs = posts.stream()
-                    .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getName()))
+                    .map(post -> new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getName(), post.getUser().getUserId()))
                     .collect(Collectors.toList());
 
             return new ResponseEntity<>(postDTOs, HttpStatus.OK); // 200 상태 코드
@@ -77,7 +77,7 @@ public class PostController {
         try {
             Post post = postRepository.findById(id)
                     .orElseThrow(() -> new RuntimeException("Post not found"));
-            PostDTO postDTO = new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getName());
+            PostDTO postDTO = new PostDTO(post.getId(), post.getTitle(), post.getContent(), post.getUser().getName(), post.getUser().getUserId());
             return new ResponseEntity<>(postDTO, HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();

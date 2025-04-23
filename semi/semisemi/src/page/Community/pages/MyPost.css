@@ -1,0 +1,67 @@
+/* MyPost.css */
+
+.my-post-container {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 1rem;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .my-post-wrapper {
+    width: 100%;
+    max-width: 800px;
+    background-color: #f7f7f7;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .my-post-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #222;
+    margin-bottom: 2rem;
+  }
+  
+  .my-post-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .my-post-item {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .my-post-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .my-post-item h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.8rem;
+  }
+  
+  .my-post-item p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .my-post-empty {
+    text-align: center;
+    color: #999;
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+  

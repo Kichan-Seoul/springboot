@@ -1,17 +1,22 @@
-/* 회원가입 폼 컨테이너 */
-.sign-up-container {
-  padding: 40px;
-  font-family: 'Arial', sans-serif;
-  max-width: 400px; /* 폼의 너비 조정 */
-  margin: 0 auto;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  text-align: left; /* 텍스트 왼쪽 정렬 */
-  margin-top: 50px;
+.sign-up-wrapper {
+  background-color: #e7f0ff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* 제목 중앙 정렬 */
+/* 흰색 박스 컨테이너 */
+.sign-up-container {
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
 .sign-up-container h2 {
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
@@ -20,90 +25,96 @@
   text-align: center;
 }
 
-/* 아이디 필드와 중복 확인 버튼을 가로로 배치 */
-.sign-up-container .input-group {
+form {
   display: flex;
-  flex-direction: row; /* 가로로 배치 */
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
-.sign-up-container .input-group label {
-  width: 30%; /* 라벨의 너비 설정 */
-  font-size: 14px;
-  margin-right: 10px; /* 라벨과 입력창 사이 간격 */
-}
-
-.sign-up-container .input-group input,
-.sign-up-container .input-group select {
-  width: 65%; /* 입력창의 너비 설정 */
-  padding: 12px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  background-color: #f4f9ff;
-}
-
-/* 아이디 필드 스타일 */
-.sign-up-container .input-group input#userId {
-  width: 50%; /* 아이디 필드 너비 조정 */
-}
-
-.sign-up-container #checkIdBtn {
-  width: 30%; /* 중복확인 버튼 너비 */
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  white-space: nowrap;
-  margin-left: 10px; /* 버튼과 입력 필드 사이 간격 */
-}
-
-/* 아이디 중복 확인 버튼 스타일 */
-.sign-up-container #checkIdBtn:hover {
-  background-color: #2563eb;
-}
-
-/* 다른 필드들 스타일 (아이디 제외) */
-.sign-up-container input:not(#userId), 
-.sign-up-container select {
-  width: 100%; /* 필드 너비 100%로 조정 */
-  padding: 12px;
-  margin: 10px 0; /* 필드들 간 간격을 일정하게 */
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  background-color: #f4f9ff;
-}
-
-/* 입력 필드 포커스 시 */
-.sign-up-container input:focus, 
-.sign-up-container select:focus {
-  border-color: #007bff;
-  outline: none;
-  background-color: #e6f0ff;
-}
-
-/* 버튼 스타일 */
-.sign-up-container button {
-  padding: 14px;
-  background-color: #3d5a98;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0;
   width: 100%;
-  font-size: 16px;
-  transition: all 0.3s ease;
 }
 
-.sign-up-container button:hover {
-  background-color: #2a457a;
+.input-group label {
+  width: 80px;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.input-group input,
+.input-group select {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  background-color: #a8c8f9;
+}
+
+#checkIdBtn {
+  margin-left: 10px;
+  background-color: #3b4d91;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.input-group-multiple {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.input-group-multiple .input-group {
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-group-multiple .input-group label {
+  margin-bottom: 5px;
+  width: auto;
+  text-align: left;
+}
+
+.character-container {
+  display: flex;
+  justify-content: space-around;
+  margin: 30px 0;
+}
+
+.character-container img {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.character-container img.selected {
+  transform: scale(1.1);
+  border: 2px solid #3b4d91;
+  border-radius: 10px;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+  background-color: #3b4d91;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 /* 캐릭터 선택 원형 이미지 스타일 */
@@ -131,3 +142,4 @@
 .sign-up-container .character-container img.selected {
   border-color: #007bff;
 }
+

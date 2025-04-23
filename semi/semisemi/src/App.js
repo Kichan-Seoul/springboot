@@ -14,6 +14,8 @@ import Login from './page/Login/login';
 import SignUp from './page/SignUp/SignUp';  
 import Write from './page/Community/pages/Write';  // 글 작성 페이지 추가
 import Detail from './page/Community/pages/Detail';  // Detail 페이지 추가
+import MyPost from "./page/Community/pages/MyPost";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,6 +64,7 @@ function App() {
         <Route path="/post/:id" element={isLoggedIn ? <Detail /> : <Navigate to="/" replace />} /> {/* 게시글 상세 페이지 라우트 추가 */}
         <Route path="/myinfo" element={isLoggedIn ? <MyInfo /> : <Navigate to="/" replace />} />
         <Route path="/write" element={isLoggedIn ? <Write /> : <Navigate to="/" replace />} /> {/* 글 작성 페이지 라우트 */}
+        <Route path="/mypost" element={<MyPost />} />
       </Routes>
     </Router>
   );

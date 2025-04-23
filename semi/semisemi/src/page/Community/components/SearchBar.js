@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBar = ({ searchTerm, onSearch }) => {
   return (
-    <div>
+    <div className="search-bar">
       <input
         type="text"
         placeholder="검색어 입력"
