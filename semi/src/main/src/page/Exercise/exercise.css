@@ -1,0 +1,207 @@
+/* 운동 페이지 전체 스타일 */
+.exercise-container {
+  padding: 25px;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 검색창 스타일 */
+.exercise-container .search-box {
+  display: flex;
+  align-items: center;
+  background-color: #e0f2fe;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-container .search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  padding: 8px 12px;
+}
+
+/* 운동 그룹 스타일 */
+.exercise-container .exercise-group {
+  margin-bottom: 30px;
+}
+
+/* 운동 타입 헤더 스타일 */
+.exercise-container .type-header {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e3a8a;
+  background-color: #dbeafe;
+  padding: 12px 18px;
+  border-left: 8px solid #3b82f6;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+/* 운동 아이템 스타일 */
+.exercise-container .exercise-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #bfdbfe;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.exercise-container .exercise-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 운동 아이템 이름과 정보 균등하게 정렬 */
+.exercise-container .exercise-item span {
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+
+/* 운동 아이템 버튼 */
+.exercise-container .exercise-item button {
+  padding: 6px 12px;
+  background-color: #4e6cef;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.exercise-container .exercise-item button:hover {
+  background-color: #3c5ae8;
+}
+
+/* 더보기 버튼 스타일 */
+.exercise-container .toggle-btn {
+  background-color: #dbeafe;
+  color: #1e3a8a;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 12px;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.exercise-container .toggle-btn:hover {
+  background-color: #93c5fd;
+}
+
+/* 오늘 한 운동 섹션 */
+.today-box {
+  margin-top: 40px;
+  background-color: #e0f2fe;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.today-box .today-summary {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+}
+
+.today-box .list-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  background-color: #dbeafe;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.today-box .list-header span {
+  flex: 1;
+  text-align: center;
+}
+
+/* 오늘 한 운동 항목 */
+.today-box .today-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #bfdbfe;
+  padding: 12px 16px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%; /* 가로 꽉 차게 설정 */
+  box-sizing: border-box; /* 너비가 부모 컨테이너에 맞게 설정되도록 */
+  gap: 10px; /* 항목 간 간격 일정하게 설정 */
+}
+
+/* 이름, 타입, 횟수, 총 kcal 텍스트 간격을 일정하게 설정 */
+.today-box .today-item span {
+  flex: 1;  /* 각 항목이 동일한 너비를 차지하게 함 */
+  text-align: left;
+  word-wrap: break-word;  /* 긴 텍스트가 잘리도록 */
+}
+
+/* 횟수 입력란 고정 너비 설정 */
+.today-box .today-item input {
+  width: 60px;  /* 횟수 고정 너비 */
+  text-align: center;
+  font-size: 14px;
+  margin-right: 10px;  /* 입력란과 버튼 간 간격 */
+}
+
+.today-box .today-item button {
+  background-color: #f87171;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 10px; /* 삭제 버튼 간 간격 */
+}
+
+/* 삭제 버튼 */
+.today-box .today-item button:hover {
+  background-color: #ef4444;
+}
+
+/* 운동 저장 버튼 */
+.exercise-container .save-btn {
+  background-color: #34d399;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;  /* 버튼이 부모 컨테이너 안에서 정렬되도록 */
+}
+
+.exercise-container .save-btn:hover {
+  background-color: #10b981;
+}

@@ -1,0 +1,120 @@
+/* 챌린지 페이지 전체 스타일 */
+.challenge-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 챌린지 목록 제목 */
+  .challenge-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+  }
+  
+  /* 챌린지 추가 폼 제목 */
+  .challenge-container h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 40px;
+    color: #34495e;
+  }
+  
+  /* 챌린지 카드 스타일 */
+  .challenge-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .challenge-card:hover {
+    transform: scale(1.02);
+  }
+  
+  /* 챌린지 제목 */
+  .challenge-card h3 {
+    font-size: 1.5rem;
+    color: #1e3a8a;
+    margin: 0;
+  }
+  
+  /* 챌린지 난이도 */
+  .challenge-card p {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin: 10px 0;
+  }
+  
+  /* 참여 버튼 */
+  .challenge-card button {
+    background-color: #4e6cef;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+  }
+  
+  .challenge-card button:hover {
+    background-color: #3c5ae8;
+  }
+  
+  /* 챌린지 추가 폼 스타일 */
+  .challenge-form {
+    margin-top: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .challenge-form label {
+    font-size: 1rem;
+    color: #34495e;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .challenge-form input,
+  .challenge-form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+  }
+  
+  .challenge-form input:focus,
+  .challenge-form select:focus {
+    border-color: #4e6cef;
+    background-color: #f0f4ff;
+  }
+  
+  .challenge-form button {
+    width: 100%;
+    background-color: #34d399;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .challenge-form button:hover {
+    background-color: #10b981;
+  }
+  

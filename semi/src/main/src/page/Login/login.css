@@ -1,0 +1,142 @@
+/* login.css */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #e9f1ff;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+.login-container .login-box {
+  width: 100%;
+  max-width: 380px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container .login-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.login-container .login-circle {
+  width: 120px;
+  height: 120px;
+  background-color: #a8ceff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 1.5rem;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container .input-group {
+  margin-bottom: 1.2rem;
+  width: 100%;
+  text-align: left;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  background-color: #f4f9ff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.login-container .login-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #3d5a98;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-container .login-button:hover {
+  background-color: #2a457a;
+  transform: scale(1.05);
+}
+
+.login-container .login-button:active {
+  background-color: #1a2a47;
+}
+
+.login-container .forgot-password {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.login-container .forgot-password:hover {
+  text-decoration: underline;
+}
+
+.login-container .signup-link {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.login-container .signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.login-container .signup-link a:hover {
+  text-decoration: underline;
+}
+/* 회원가입 버튼 */
+.signup-button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #3d5a98;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover 시 색상 변경 */
+.signup-button:hover {
+  background-color: #2a457a;
+  transform: scale(1.05);  /* 버튼 크기 증가 */
+}
+
+/* 클릭(활성화) 시 색상 변경 */
+.signup-button:active {
+  background-color: #1a2a47;
+  transform: scale(1.03);  /* 클릭 시 크기 약간 줄어듦 */
+}

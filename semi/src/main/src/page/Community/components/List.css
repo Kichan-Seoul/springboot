@@ -1,0 +1,8 @@
+.List {
+    display: flex;
+    justify-content: center;   
+}
+
+.listTable {
+    width: 1000px;
+}

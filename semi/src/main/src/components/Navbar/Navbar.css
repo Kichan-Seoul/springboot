@@ -1,0 +1,58 @@
+/* navbar.css */
+.navbar {
+  background-color: #333;  /* 네비게이션 바 배경 색상 */
+  padding: 10px 20px;  /* 패딩 */
+  position: relative;
+  height: 60px;  /* 네비게이션 바 높이 */
+}
+
+/* 네비게이션 항목들을 가운데 정렬 */
+.navbar .nav-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* 네비게이션 항목 리스트 */
+.navbar .nav-list {
+  display: flex;
+  gap: 20px;  /* 항목 간 간격 */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* 네비게이션 항목의 링크 스타일 */
+.navbar .nav-list li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar .nav-list li a:hover {
+  text-decoration: underline;  /* 호버 시 밑줄 추가 */
+}
+
+/* 로그인/로그아웃 버튼을 우측에 배치 */
+.navbar .nav-right {
+  position: absolute;
+  right: 20px;  /* 우측 정렬 */
+  top: 50%;
+  transform: translateY(-50%);  /* 수직 중앙 정렬 */
+}
+
+/* 로그아웃 버튼 스타일 */
+.navbar .logout-button {
+  background-color: #ff6666;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.navbar .logout-button:hover {
+  background-color: #ff4444;  /* 호버 시 색상 변경 */
+}

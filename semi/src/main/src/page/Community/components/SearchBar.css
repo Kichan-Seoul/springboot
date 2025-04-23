@@ -1,0 +1,24 @@
+.searchinput {
+    background-color: skyblue;
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+}
+.searchbarbtn {
+    background-color: #3f528c;
+    color: white;
+    padding: 10px 10px;
+    margin: 5px;
+}
+
+.searchbarbtn1 {
+    background: none;
+    border: none;
+}
+
+.searchbarbtn1>img {
+    width: 35px;
+    cursor: pointer;
+    margin-bottom: -10px;
+   
+}
