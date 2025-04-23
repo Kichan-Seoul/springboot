@@ -17,7 +17,7 @@ const Write = () => {
   
     // 요청 URL 경로를 확인 후 수정 (예: /posts => /api/posts)
     axios
-      .post("http://localhost:8080/api/posts", postData)  // 수정된 경로
+      .post("http://localhost:8080/posts", postData)  // 수정된 경로
       .then((response) => {
         console.log("게시글 작성 성공:", response.data);
       })

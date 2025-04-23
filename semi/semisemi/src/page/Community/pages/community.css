@@ -1,0 +1,163 @@
+/* 전체 레이아웃 */
+.community-container {
+display: flex;
+justify-content: center;
+align-items: flex-start;
+padding: 2rem 4rem;
+font-family: 'Arial', sans-serif;
+position: relative;
+}
+
+/* 좌측 메인 게시판 영역 */
+.community-left {
+flex: 1;
+max-width: 800px;
+display: flex;
+flex-direction: column;
+/* justify-content: flex-start; */
+align-items: center;
+width: 100%;
+}
+
+/* 검색바 */
+.search-bar {
+flex: 1;
+display: flex;
+align-items: center;
+margin-bottom: 1rem;
+width: 100%;
+min-width: 500px;
+}
+
+.search-bar input {
+flex: 1;
+padding: 0.6rem 1rem;
+border: none;
+border-radius: 8px;
+background-color: #a9c8ff;
+color: white;
+font-size: 1rem;
+outline: none;
+width: 100%;
+min-width: 400px;
+}
+
+.search-bar input::placeholder {
+color: #f0f0f0;
+}
+
+.search-bar svg {
+margin-left: 0.5rem;
+cursor: pointer;
+}
+
+.search-bar-wrapper {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 1rem;
+}
+
+/* 글 작성 버튼 */
+.write-button {
+background-color: #3d509a;
+color: white;
+border: none;
+padding: 10px 30px;
+border-radius: 6px;
+cursor: pointer;
+margin-bottom: 17px;
+}
+
+.write-button:hover {
+background-color: #2f3f7f;
+}
+
+/* 게시글 리스트 */
+.list-container {
+background-color: #cce2f8;
+padding: 1.5rem;
+border-radius: 12px;
+width: 100%;
+max-width: 800px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+display: flex;
+flex-direction: column;
+gap: 0.75rem;
+margin-top: 1rem;
+}
+
+.list-item {
+background-color: #cce2f8;
+padding: 1rem;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 우측 랭킹 박스 */
+.rank-box {
+width: 150px;
+background-color: #a9c8ff;
+border-radius: 16px;
+padding: 1rem;
+text-align: center;
+position: sticky;
+top: 140px;
+}
+
+.rank-box .crown {
+font-size: 1.5rem;
+margin-bottom: 0.5rem;
+}
+
+.rank-box ol {
+list-style: none;
+padding: 0;
+color: white;
+font-weight: bold;
+}
+
+.rank-box ol li {
+margin: 0.4rem 0;
+}
+
+/* 페이지네이션 */
+.pagination {
+display: flex;
+justify-content: center;
+margin-top: 2rem;
+}
+
+.pagination button {
+background-color: #3d509a;
+color: white;
+margin: 10px 50px;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+.pagination button:hover {
+background-color: #2f3f7f;
+}
+.search-bar {
+display: flex;
+align-items: center;
+margin-bottom: 1rem;
+margin: 0 auto;
+}
+
+.search-input {
+flex: 1;
+padding: 0.6rem 1rem;
+border: none;
+border-radius: 8px;
+background-color: #a9c8ff;
+color: white;
+font-size: 1rem;
+outline: none;
+}
+
+.search-input::placeholder {
+color: #f0f0f0;
+}
