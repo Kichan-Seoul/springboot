@@ -15,6 +15,7 @@ import SignUp from './page/SignUp/SignUp';
 import Write from './page/Community/pages/Write';  // 글 작성 페이지 추가
 import Detail from './page/Community/pages/Detail';  // Detail 페이지 추가
 import MyPost from "./page/Community/pages/MyPost";
+import Edit from "./page/Community/pages/Edit";
 
 
 function App() {
@@ -72,6 +73,7 @@ function App() {
         <Route path="/myinfo" element={isLoggedIn ? <MyInfo /> : <Navigate to="/" replace />} />
         <Route path="/write" element={isLoggedIn ? <Write /> : <Navigate to="/" replace />} /> {/* 글 작성 페이지 라우트 */}
         <Route path="/mypost" element={<MyPost />} />
+        <Route path="/edit/:id" element={<Edit />} />
       </Routes>
     </Router>
   );

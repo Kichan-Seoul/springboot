@@ -3,6 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import List from "../components/List";
 import './MyPost.css'; 
+import { Link } from "react-router-dom";
+
 
 const MyPost = () => {
   const [posts, setPosts] = useState([]);
@@ -28,12 +30,14 @@ const MyPost = () => {
     <div className="my-post-container">
       <div className="my-post-wrapper">
         <h1 className="my-post-title">내가 쓴 글</h1>
-        
+  
         {posts.length > 0 ? (
           <div className="list-container">
             {posts.map((post) => (
               <div key={post.id} className="list-item">
-                <h2>{post.title}</h2>
+                <Link to={`/post/${post.id}`} className="post-link">
+                  <h2>{post.title}</h2>
+                </Link>
                 <p>{post.content}</p>
               </div>
             ))}
