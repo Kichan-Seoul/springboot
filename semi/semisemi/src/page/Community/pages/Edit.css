@@ -1,59 +1,84 @@
 /* Edit.css */
 
 .edit-container {
-    max-width: 700px;
-    margin: 60px auto;
-    padding: 40px 30px;
-    background-color: #f9fbff;
-    border-radius: 16px;
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .edit-container h2 {
-    text-align: center;
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 30px;
-  }
-  
-  .edit-container input,
-  .edit-container textarea {
-    width: 100%;
-    padding: 14px 18px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    outline: none;
-    transition: border 0.2s ease;
-  }
-  
-  .edit-container input:focus,
-  .edit-container textarea:focus {
-    border-color: #3d509a;
-  }
-  
-  .edit-container textarea {
-    min-height: 200px;
-    resize: vertical;
-  }
-  
-  .edit-container button {
-    background-color: #3d509a;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    display: block;
-    margin: 0 auto;
-    transition: background-color 0.3s ease;
-  }
-  
-  .edit-container button:hover {
-    background-color: #2c3e7f;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  gap: 1rem;
+  background-color: #f5f8fa;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  min-height: 500px;
+  position: relative;
+}
+
+.edit-container h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 30px;
+}
+
+.edit-container input,
+.edit-container textarea {
+  width: 95%;
+  padding: 14px 14px 14px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.edit-container input:focus,
+.edit-container textarea:focus {
+  border-color: #3d509a;
+}
+
+.edit-container textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+.button-row {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  /* 버튼 사이 간격 */
+  align-self: flex-end;
+  padding-top: 2rem;
+}
+
+.cancel-btn,
+.update-btn {
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-width: 90px;
+}
+
+.cancel-btn {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #b0b0b0;
+}
+
+.update-btn {
+  background-color: #2e5aac;
+  color: white;
+}
+
+.update-btn:hover {
+  background-color: #1f4694;
+}

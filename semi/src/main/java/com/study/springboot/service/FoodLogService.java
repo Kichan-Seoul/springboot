@@ -1,9 +1,12 @@
 package com.study.springboot.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.study.springboot.entity.FoodLog;
+import com.study.springboot.dto.CaloriesDto;
 import com.study.springboot.repository.FoodLogRepository;
 
 @Service
@@ -12,8 +15,12 @@ public class FoodLogService {
     @Autowired
     private FoodLogRepository foodLogRepository;
 
-    // 음식 섭취 기록 저장
-    public FoodLog addFoodLog(FoodLog foodLog) {
-        return foodLogRepository.save(foodLog);
+    public List<CaloriesDto> getDailyCaloriesByUser(String userId) {
+        List<CaloriesDto> result = foodLogRepository.findDailyCaloriesByUser(userId);
+        if (result == null || result.isEmpty()) {
+            System.out.println("유효한 userId가 없습니다.");
+            return new ArrayList<>();
+        }
+        return result;
     }
 }

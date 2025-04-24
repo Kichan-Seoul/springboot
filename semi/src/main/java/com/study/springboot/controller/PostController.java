@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -88,8 +89,8 @@ public class PostController {
     }
     
     // 게시물 수정
-    @PutMapping("/posts/{id}")
-    public ResponseEntity<?> updatePost(@PathVariable Long id, @RequestBody PostUpdateDTO dto) {
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updatePost(@PathVariable("id") Long id, @RequestBody PostUpdateDTO dto) {
         
     	 System.out.println("수정 요청 들어옴 - title: " + dto.getTitle());
     	    System.out.println("수정 요청 들어옴 - content: " + dto.getContent());
@@ -103,6 +104,22 @@ public class PostController {
         postRepository.save(post);
         return ResponseEntity.ok("수정 완료");
     }
+    
+    // 게시물 삭제
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePost(@PathVariable("id") Long id) {
+        try {
+            Post post = postRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post not found"));
+
+            postRepository.delete(post);
+            return ResponseEntity.ok("삭제 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("삭제 실패");
+        }
+    }
+
 
 
 }

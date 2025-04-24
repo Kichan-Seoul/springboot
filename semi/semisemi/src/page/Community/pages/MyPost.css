@@ -23,13 +23,16 @@
     margin-bottom: 2rem;
   }
   
-  .my-post-list {
+  .list-container {
     display: flex;
+    width: 92%;
     flex-direction: column;
     gap: 1.2rem;
+    justify-content: center;
+
   }
   
-  .my-post-item {
+  .list-item {
     background-color: #ffffff;
     padding: 1.5rem;
     border-radius: 10px;
@@ -37,19 +40,19 @@
     transition: all 0.3s ease;
   }
   
-  .my-post-item:hover {
+  .list-item:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
   
-  .my-post-item h3 {
+  .list-item h3 {
     font-size: 1.2rem;
     font-weight: bold;
     color: #333;
     margin-bottom: 0.8rem;
   }
   
-  .my-post-item p {
+  .list-item p {
     font-size: 1rem;
     color: #555;
     line-height: 1.5;
@@ -65,3 +68,12 @@
     margin-top: 2rem;
   }
   
+  .detail-btn {
+    background-color: #3d509a;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 17px;
+}

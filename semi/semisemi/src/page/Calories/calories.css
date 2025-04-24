@@ -60,8 +60,8 @@
 }
 
 .calories-container .meal-square {
-    background-color: #334586;
-    color: white;
+    background-color: #cee1f2;
+    color: #3f528c;
     border-radius: 10px;
     padding: 16px;
     height: 220px;
@@ -115,26 +115,28 @@
     align-items: center;
     font-size: 22px;
     font-weight: bold;
-    background-color: #334586;
-    color: white;
+    background-color: #cee1f2;
+    color: #3f528c;
     border-radius: 10px;
     height: 220px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
 /* 선택된 음식 정보 */
 .selected-food-container {
-    background-color: #f0f4ff;
+    background-color: #cee1f2;
+    color: #3f528c;
+    margin-top: 10px;
     padding: 20px;
-    margin-top: 20px;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* 저장 버튼 스타일 */
 .save-button {
-    padding: 10px 20px;
-    background-color: #4e6cef;
+    padding: 10px;
+    background-color: #3f528c;
     color: white;
     border: none;
     border-radius: 6px;

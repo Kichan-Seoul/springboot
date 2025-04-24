@@ -43,10 +43,10 @@ const Community = () => {
         <div className="search-bar-wrapper">
           <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
           <Link to="/write">
-            <button className="write-button">글 작성</button>
+            <button className="write-button-click">글 작성</button>
           </Link>
           <Link to="/MyPost">
-            <button className="write-button">내 글</button>
+            <button className="my-post-button">내 글</button>
           </Link>
         </div>
         {filteredPosts.length > 0 ? (

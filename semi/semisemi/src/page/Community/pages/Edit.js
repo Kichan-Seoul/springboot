@@ -25,16 +25,19 @@ const Edit = () => {
   }, [id]);
 
   // 2. 수정 요청 보내기
+  const currentUser = localStorage.getItem("userId");
+
   const handleUpdate = () => {
     const updatedPost = {
       title,
-      content
+      content,
+      userId: currentUser
     };
 
     axios.put(`http://localhost:8080/posts/${id}`, updatedPost)
       .then(() => {
         alert("수정 완료!");
-        navigate(`/detail/${id}`);
+        navigate(`/post/${id}`);
       })
       .catch((err) => {
         console.error("수정 실패:", err);
@@ -56,7 +59,10 @@ const Edit = () => {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <button onClick={handleUpdate}>수정 완료</button>
+      <div className="button-row">
+        <button className="cancel-btn" onClick={() => navigate(`/post/${id}`)}>취소</button>
+        <button className="update-btn" onClick={handleUpdate}>수정 완료</button>
+      </div>
     </div>
   );
 };

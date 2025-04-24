@@ -29,6 +29,7 @@ const MyPost = () => {
   return (
     <div className="my-post-container">
       <div className="my-post-wrapper">
+        <button className="detail-btn" onClick={() => navigate(-1)}>전체글</button>
         <h1 className="my-post-title">내가 쓴 글</h1>
   
         {posts.length > 0 ? (
