@@ -332,5 +332,7 @@ SELECT * FROM users;
 
 SELECT * FROM v$database;
 
+ALTER TABLE food_logs ADD MEAL_TIME VARCHAR2(20);
+
 commit;
 

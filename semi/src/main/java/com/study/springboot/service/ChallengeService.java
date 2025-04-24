@@ -21,15 +21,23 @@ public class ChallengeService {
         return challengeRepository.findById(id).orElse(null);
     }
 
-    public Challenge createChallenge(Challenge challenge) {
-        return challengeRepository.save(challenge);
-    }
-
-    public void deleteChallenge(Long id) {
-        challengeRepository.deleteById(id);
+    public List<Challenge> getChallengesByCategoryAndDifficulty(String category, String difficulty) {
+        if (category != null && !category.isEmpty() && difficulty != null && !difficulty.isEmpty()) {
+            return challengeRepository.findByCategoryAndDifficulty(category, difficulty);
+        } else if (category != null && !category.isEmpty()) {
+            return challengeRepository.findByCategory(category);
+        } else if (difficulty != null && !difficulty.isEmpty()) {
+            return challengeRepository.findByDifficulty(difficulty);
+        } else {
+            return challengeRepository.findAll();
+        }
     }
 
     public List<Challenge> getChallengesByCategory(String category) {
         return challengeRepository.findByCategory(category);
     }
-}
+
+    public Challenge saveChallenge(Challenge challenge) {
+        return challengeRepository.save(challenge);
+    }
+} 

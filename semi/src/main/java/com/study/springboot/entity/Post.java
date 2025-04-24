@@ -27,4 +27,6 @@ public class Post {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID") // 외래 키 설정
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // 추가
     private User user;
+
+    // Getters and Setters
 }

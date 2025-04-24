@@ -1,15 +1,20 @@
 package com.study.springboot.controller;
 
-import lombok.RequiredArgsConstructor;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.study.springboot.dto.FoodLogDto;
 import com.study.springboot.dto.FoodLogRequest;
 import com.study.springboot.entity.FoodLog;
 import com.study.springboot.repository.FoodLogRepository;
+import com.study.springboot.service.FoodLogService;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/food-logs")
@@ -17,10 +22,10 @@ import java.util.stream.Collectors;
 public class FoodLogController {
 
     private final FoodLogRepository foodLogRepository;
+    private final FoodLogService foodLogService;
 
     @PostMapping("/bulk")
     public ResponseEntity<?> saveBulk(@RequestBody List<FoodLogRequest> requestList) {
-        // 요청값 유효성 검사
         for (FoodLogRequest req : requestList) {
             if (req.getUserId() == null || req.getUserId().trim().isEmpty()) {
                 return ResponseEntity.badRequest().body("userId가 없습니다.");
@@ -36,7 +41,6 @@ public class FoodLogController {
             }
         }
 
-        // logDate의 시간 부분을 자정(00:00:00)으로 초기화해서 저장
         List<FoodLog> foodLogs = requestList.stream()
             .map(req -> FoodLog.builder()
                 .userId(req.getUserId())
@@ -44,11 +48,20 @@ public class FoodLogController {
                 .quantity(req.getQuantity())
                 .totalCalories(req.getTotalCalories())
                 .mealTime(req.getMealTime())
-                .logDate(req.getLogDate().toLocalDate().atStartOfDay())  // 자정으로 세팅
-                .build()
-            ).collect(Collectors.toList());
+                .logDate(req.getLogDate().toLocalDate().atStartOfDay())
+                .build())
+            .collect(Collectors.toList());
 
         foodLogRepository.saveAll(foodLogs);
         return ResponseEntity.ok("저장 완료!");
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<FoodLogDto>> getLogsByDate(
+            @PathVariable("userId") String userId,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+
+        List<FoodLogDto> logs = foodLogService.getFoodLogsByDate(userId, date);
+        return ResponseEntity.ok(logs);
     }
 }

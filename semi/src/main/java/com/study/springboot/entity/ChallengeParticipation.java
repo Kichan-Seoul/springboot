@@ -1,3 +1,4 @@
+// ChallengeParticipation 엔티티
 package com.study.springboot.entity;
 
 import jakarta.persistence.*;
@@ -11,19 +12,19 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "CHALLENGE_PARTICIPATION") // 테이블 이름 명시
+@Table(name = "CHALLENGE_PARTICIPATION")
 public class ChallengeParticipation {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "PARTICIPATION_ID")
     private Long participationId;
 
     @ManyToOne
-    @JoinColumn(name = "CHALLENGE_ID")  // Challenge ID 컬럼을 매핑
+    @JoinColumn(name = "CHALLENGE_ID")
     private Challenge challenge;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")  // User ID 컬럼을 매핑
+    @JoinColumn(name = "USER_ID")	
     private User user;
 
     @Column(name = "STATUS")
@@ -36,5 +37,6 @@ public class ChallengeParticipation {
     private LocalDate completedAt;
 
     @Column(name = "EARNED_POINTS")
-    private Integer earnedPoints;
+    private Integer earnedPoints = 0;
+
 }

@@ -1,21 +1,26 @@
 package com.study.springboot.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class CaloriesDto {
-    private String logDate;
-    private int totalCalories;
+    private LocalDate logDate;
+    private Long totalCalories;
 
-    public CaloriesDto(String logDate, Number totalCalories) {
+    // 🔧 LocalDateTime → LocalDate로 변환해서 저장
+    public CaloriesDto(LocalDateTime logDateTime, Long totalCalories) {
+        this.logDate = logDateTime.toLocalDate();
+        this.totalCalories = totalCalories;
+    }
+
+    // 필요 시 직접 LocalDate 받는 생성자도 유지
+    public CaloriesDto(LocalDate logDate, Long totalCalories) {
         this.logDate = logDate;
-        this.totalCalories = totalCalories != null ? totalCalories.intValue() : 0;
+        this.totalCalories = totalCalories;
     }
 }
-

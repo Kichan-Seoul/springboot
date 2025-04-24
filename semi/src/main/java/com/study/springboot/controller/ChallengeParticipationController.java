@@ -1,13 +1,14 @@
 package com.study.springboot.controller;
 
-import com.study.springboot.entity.ChallengeParticipation;
-import com.study.springboot.service.ChallengeParticipationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.study.springboot.entity.ChallengeParticipation;
+import com.study.springboot.service.ChallengeParticipationService;
+
 @RestController
 @RequestMapping("/challenge-participations")
-@CrossOrigin(origins = "http://localhost:3000")  // React 클라이언트와의 CORS 설정
+@CrossOrigin(origins = "http://localhost:3000")
 public class ChallengeParticipationController {
 
     @Autowired
