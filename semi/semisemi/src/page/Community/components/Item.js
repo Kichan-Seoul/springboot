@@ -9,18 +9,18 @@ const Item = ({ post, clickView }) => {
     nav(`/detail/${post.id}`); //상세
   };
 
-    return(
+  return (
     <>
-    <tr onClick={handleClick}>
-      <td>{post.id}</td>
-      <td>{post.title}</td>
-      {/* <td>{post.content}</td> */}
-      <td>{post.writer}</td>
-      <td>{post.date}</td>
-      <td>{post.views}</td>
-    </tr>
-     </>
-    )
+      <tr onClick={handleClick}>
+        <td>{post.id}</td>
+        <td>{post.title}</td>
+        <td>{post.content}</td>
+        <td>{post.writer}</td>
+        <td>{post.date}</td>
+        <td>{post.views}</td>
+      </tr>
+    </>
+  )
 }
 
 export default Item;

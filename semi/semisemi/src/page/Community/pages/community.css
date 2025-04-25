@@ -5,27 +5,32 @@
   align-items: flex-start;
   padding: 2rem 4rem;
   font-family: 'Arial', sans-serif;
-  position: relative;
+  gap: 60px;
 }
 
-/* 좌측 메인 게시판 영역 */
+/* 좌측 게시판 영역 */
 .community-left {
-  flex: 1;
-  max-width: 800px;
+  width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
 /* 검색바 */
+.search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
 .search-bar {
-  flex: 1;
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
   width: 100%;
-  min-width: 500px;
 }
 
 .search-bar input {
@@ -37,37 +42,21 @@
   color: white;
   font-size: 1rem;
   outline: none;
-  width: 100%;
-  min-width: 400px;
+  min-width: 300px;
 }
 
 .search-bar input::placeholder {
   color: #f0f0f0;
 }
 
-.search-bar svg {
-  margin-left: 0.5rem;
-  cursor: pointer;
-}
-
-.search-bar-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* 글 작성 버튼 */
 .write-button-click, .my-post-button {
   background-color: #3d509a;
   color: white;
   border: none;
-  padding: 10px 30px;
+  padding: 10px 25px;
   border-radius: 6px;
   cursor: pointer;
-  margin-bottom: 17px;
 }
-
 
 /* 게시글 리스트 */
 .list-container {
@@ -83,7 +72,6 @@
   margin-top: 1.5rem;
 }
 
-/* 각 게시글 항목 */
 .list-item {
   background-color: #ffffff;
   padding: 1.5rem;
@@ -92,41 +80,38 @@
   transition: all 0.3s ease;
 }
 
-/* 리스트 항목 호버 효과 */
 .list-item:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 강조 */
-  transform: translateY(-5px); /* 위로 떠오르는 효과 */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
 }
 
-/* 게시글 제목 */
 .list-item h3 {
   font-size: 1.3rem;
-  color: #333; /* 제목 색상 */
+  color: #333;
   margin-bottom: 1rem;
-  font-weight: bold; /* 제목 강조 */
+  font-weight: bold;
 }
 
-/* 게시글 내용 */
 .list-item p {
   font-size: 1rem;
-  color: #555; /* 내용 색상 */
+  color: #555;
   line-height: 1.6;
   margin-bottom: 0.8rem;
-  text-overflow: ellipsis; /* 긴 텍스트 잘리기 */
+  text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 }
 
 /* 우측 랭킹 박스 */
 .rank-box {
-  width: 150px;
+  width: 180px;
   background-color: #a9c8ff;
   border-radius: 16px;
   padding: 1rem;
   text-align: center;
   position: sticky;
   top: 140px;
-  margin-left: 100px;
+  flex-shrink: 0;
 }
 
 .rank-box .crown {
@@ -145,22 +130,47 @@
   margin: 0.4rem 0;
 }
 
-/* 페이지네이션 */
-.pagination {
+/* ✅ 커뮤니티 전용 페이지네이션 */
+.community-pagination {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 2rem;
+  gap: 4px;
+  font-family: 'Arial', sans-serif;
 }
 
-.pagination button {
-  background-color: #3d509a;
-  color: white;
-  margin: 10px 50px;
+.community-pagination button {
+  background-color: #f5f5f5;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: #333;
   cursor: pointer;
+  height: 30px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  min-width: 32px;
+  max-width: max-content;
+  transition: background-color 0.2s ease;
 }
 
-.pagination button:hover {
-  background-color: #2f3f7f;
+.community-pagination button:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.community-pagination .active {
+  background-color: #526eff;
+  color: white;
+  font-weight: bold;
+}
+
+.community-pagination button:disabled {
+  background-color: #ddd;
+  color: #888;
+  cursor: not-allowed;
 }

@@ -8,6 +8,17 @@ const Exercise = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedTypes, setExpandedTypes] = useState({});
 
+  // ✅ 하루마다 초기화
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0];
+    const storedDate = localStorage.getItem("lastExerciseDate");
+
+    if (storedDate !== today) {
+      setTodayExercises([]);
+      localStorage.setItem("lastExerciseDate", today);
+    }
+  }, []);
+
   useEffect(() => {
     axios.get("http://localhost:8080/exercises")
       .then(res => setExerciseList(res.data))
@@ -15,29 +26,27 @@ const Exercise = () => {
   }, []);
 
   const handleAddExercise = (exercise) => {
-    setTodayExercises((prev) => {
-      const exists = prev.find((e) => e.name === exercise.name);
+    setTodayExercises(prev => {
+      const exists = prev.find(e => e.name === exercise.name);
       if (exists) return prev;
       return [...prev, { ...exercise, count: 1 }];
     });
   };
 
   const handleRemoveExercise = (name) => {
-    setTodayExercises((prev) => prev.filter((e) => e.name !== name));
+    setTodayExercises(prev => prev.filter(e => e.name !== name));
   };
 
   const handleCountChange = (e, name) => {
     const value = parseInt(e.target.value) || 0;
-    setTodayExercises((prev) =>
-      prev.map((ex) => (ex.name === name ? { ...ex, count: value } : ex))
+    setTodayExercises(prev =>
+      prev.map(ex => (ex.name === name ? { ...ex, count: value } : ex))
     );
   };
 
   const handleExerciseClick = (name) => {
-    setTodayExercises((prev) =>
-      prev.map((ex) =>
-        ex.name === name ? { ...ex, count: ex.count + 1 } : ex
-      )
+    setTodayExercises(prev =>
+      prev.map(ex => (ex.name === name ? { ...ex, count: ex.count + 1 } : ex))
     );
   };
 
@@ -46,12 +55,12 @@ const Exercise = () => {
     0
   );
 
-  const filteredExercises = exerciseList.filter((exercise) => {
+  const filteredExercises = exerciseList.filter(ex => {
     const lower = searchTerm.toLowerCase();
     return (
-      exercise.name.toLowerCase().includes(lower) ||
-      exercise.type.toLowerCase().includes(lower) ||
-      exercise.caloriesBurned.toString().includes(lower)
+      ex.name.toLowerCase().includes(lower) ||
+      ex.type.toLowerCase().includes(lower) ||
+      ex.caloriesBurned.toString().includes(lower)
     );
   });
 
@@ -62,12 +71,13 @@ const Exercise = () => {
   }, {});
 
   const toggleType = (type) => {
-    setExpandedTypes((prev) => ({
+    setExpandedTypes(prev => ({
       ...prev,
       [type]: !prev[type],
     }));
   };
 
+  // ✅ 저장 후 초기화 포함
   const handleSaveExercise = () => {
     const userId = localStorage.getItem("userId");
     if (!userId) {
@@ -75,14 +85,26 @@ const Exercise = () => {
       return;
     }
 
-    axios
-      .put(`http://localhost:8080/users/${userId}/burned-calories`, {
-        caloriesBurned: totalKcal,
-      })
+    const now = new Date();
+    const kst = new Date(now.getTime() - now.getTimezoneOffset() * 60000);
+    const logDate = kst.toISOString();
+
+    const logs = todayExercises.map(ex => ({
+      userId: userId,
+      exerciseId: ex.id,
+      durationMin: ex.count * ex.defaultDurationMin,
+      caloriesBurned: ex.count * ex.caloriesBurned,
+      logDate: logDate,
+    }));
+
+    axios.post("http://localhost:8080/exercise-logs/bulk", logs)
       .then(() => {
         alert("운동 정보가 저장되었습니다!");
+        setTodayExercises([]);      // ✅ 초기화
+        setSearchTerm("");          // ✅ 검색도 초기화
+        setExpandedTypes({});       // ✅ 펼친 그룹도 초기화 (선택사항)
       })
-      .catch((err) => {
+      .catch(err => {
         console.error("운동 저장 실패:", err);
         alert("운동 저장 중 오류가 발생했습니다.");
       });
@@ -118,10 +140,7 @@ const Exercise = () => {
                 </div>
               ))}
               {exercises.length > 3 && (
-                <button
-                  className="toggle-btn"
-                  onClick={() => toggleType(type)}
-                >
+                <button className="toggle-btn" onClick={() => toggleType(type)}>
                   {isExpanded ? "접기 ▲" : "더 보기 ▼"}
                 </button>
               )}
@@ -143,12 +162,7 @@ const Exercise = () => {
         </div>
 
         {todayExercises.map((ex) => (
-          <div
-            key={ex.id}
-            className="today-item"
-            onClick={() => handleExerciseClick(ex.name)}
-            style={{ cursor: "pointer" }}
-          >
+          <div key={ex.id} className="today-item" onClick={() => handleExerciseClick(ex.name)} style={{ cursor: "pointer" }}>
             <span>{ex.name}</span>
             <span>{ex.type}</span>
             <input
@@ -159,15 +173,10 @@ const Exercise = () => {
               onClick={(e) => e.stopPropagation()}
             />
             <span>{ex.count * ex.caloriesBurned}kcal</span>
-            <button
-              className="remove-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleRemoveExercise(ex.name);
-              }}
-            >
-              ❌
-            </button>
+            <button className="remove-btn" onClick={(e) => {
+              e.stopPropagation();
+              handleRemoveExercise(ex.name);
+            }}>❌</button>
           </div>
         ))}
 

@@ -1,21 +1,20 @@
-/* navbar 전체 배경 */
 .navbar {
   background-color: #3f528c;
   padding: 12px 0;
+  position: relative;
 }
 
-/* 가운데 정렬된 컨텐츠 박스 */
-.navbar-content {
-  max-width: 700px;
+/* 전체 컨테이너 */
+.nav-container {
+  position: relative;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
+  justify-content: center;  /* 가운데 정렬 */
   align-items: center;
-  justify-content: center;
-  padding: 0 20px;
-
 }
 
-/* nav 리스트 스타일 */
+/* 메뉴 리스트 가운데 배치 */
 .nav-list {
   display: flex;
   gap: 20px;
@@ -24,7 +23,6 @@
   padding: 0;
 }
 
-/* nav 리스트 텍스트 */
 .nav-list li a {
   color: white;
   text-decoration: none;
@@ -36,15 +34,12 @@
   text-decoration: underline;
 }
 
-.nav-list{
-  margin-left: 20px;
-}
-
-/* 로그인/로그아웃 버튼 우측 */
+/* 로그아웃 버튼 */
 .nav-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .logout-button {
@@ -55,7 +50,6 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  margin-left: 30px;
 }
 
 .logout-button:hover {
