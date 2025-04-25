@@ -334,5 +334,13 @@ SELECT * FROM v$database;
 
 ALTER TABLE food_logs ADD MEAL_TIME VARCHAR2(20);
 
+SELECT DISTINCT e.type
+FROM exercise_logs l
+JOIN exercises e ON l.exercise_id = e.exercise_id
+WHERE l.user_id = :userId
+  AND TRUNC(l.log_date) = TRUNC(SYSDATE)
+FETCH FIRST 3 ROWS ONLY
+
+
 commit;
 

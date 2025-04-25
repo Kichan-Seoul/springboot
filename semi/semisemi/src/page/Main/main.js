@@ -7,6 +7,16 @@ const Main = () => {
   const [todayCalories, setTodayCalories] = useState(null);
   const [burnedCalories, setBurnedCalories] = useState(null);
 
+  const typeIconMap = {
+    유산소: "/icons/img1.png",
+    근력: "/icons/img2.png",
+    유연성: "/icons/img3.png",
+    일상활동: "/icons/img4.png",
+    균형감각: "/icons/img5.png"
+  };
+  const [exerciseTypes, setExerciseTypes] = useState([]);
+
+
   // ✅ 정확한 한국 시간 기준 날짜 함수
   const getKSTDateString = () => {
     const now = new Date();
@@ -47,6 +57,19 @@ const Main = () => {
         console.error("운동 칼로리 불러오기 실패", err);
         setBurnedCalories(0);
       });
+
+    // 오늘 한 운동 타입 불러오기
+    axios.get(`http://localhost:8080/api/exercise-types/today`, {
+      params: { userId }
+    })
+      .then(res => {
+        setExerciseTypes(res.data); // 예: ['유산소', '근력']
+      })
+      .catch(err => {
+        console.error("오늘 운동 타입 불러오기 실패", err);
+        setExerciseTypes([]);
+      });
+
   }, []);
 
   if (!user || todayCalories === null || burnedCalories === null) {
@@ -77,10 +100,16 @@ const Main = () => {
 
       <div>
         오늘 한 운동 :
-        <img src="/icon1.png" alt="운동1" />
-        <img src="/icon2.png" alt="운동2" />
-        <img src="/icon3.png" alt="운동3" />
+        {exerciseTypes.map((type) => (
+          <img
+            key={type}
+            src={typeIconMap[type] || "/icons/default.png"} // 혹시 없는 타입 대비
+            alt={type}
+            style={{ width: '40px', marginRight: '8px' }}
+          />
+        ))}
       </div>
+
     </div>
   );
 };
