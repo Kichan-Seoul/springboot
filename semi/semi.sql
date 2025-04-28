@@ -44,6 +44,11 @@ difficulty VARCHAR2(10) DEFAULT '초급',
 category VARCHAR2(50),
 CONSTRAINT chk_challenge_difficulty CHECK (difficulty IN ('초급', '중급', '고급'))
 );
+ALTER TABLE CHALLENGE_PARTICIPATION
+DROP CONSTRAINT CHK_STATUS;
+ALTER TABLE CHALLENGE_PARTICIPATION
+ADD CONSTRAINT CHK_STATUS CHECK (STATUS IN ('대기 중', '진행 중', '완료', '실패'));
+
 - - 챌린지 참여 내역
 CREATE TABLE challenge_participation (
 participation_id NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -53,7 +58,7 @@ status VARCHAR2(10) DEFAULT '진행 중',
 joined_at DATE,
 completed_at DATE,
 earned_points NUMBER DEFAULT 0,
-CONSTRAINT chk_participation_status CHECK (status IN ('진행 중', '완료', '취소')),
+CONSTRAINT chk_participation_status CHECK (status IN ('진행 중', '대기 중', '완료', '취소')),
 CONSTRAINT fk_part_user FOREIGN KEY (user_id) REFERENCES users(user_id),
 CONSTRAINT fk_part_challenge FOREIGN KEY (challenge_id) REFERENCES challenges(challenge_id)
 );
