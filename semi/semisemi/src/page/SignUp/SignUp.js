@@ -41,7 +41,7 @@ const SignUp = () => {
     } catch (error) {
       console.error("아이디 중복 확인 실패:", error);
     }
-  };
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -51,8 +51,18 @@ const SignUp = () => {
       return;
     }
 
+    if (selectedCharacter === null) {
+      alert("캐릭터를 선택해주세요!");
+      return;
+    }
+
     try {
-      const response = await axios.post("http://localhost:8080/users", form);
+      const newUser = {
+        ...form,
+        profileImageUrl: selectedCharacter.toString(), // 여기 추가! (문자열로 보내줌)
+      };
+
+      const response = await axios.post("http://localhost:8080/users", newUser);
       console.log("등록 성공:", response.data);
       alert("회원 등록 성공!");
 
@@ -126,25 +136,25 @@ const SignUp = () => {
         {/* 캐릭터 선택 */}
         <div className="character-container">
           <img
-            src="https://via.placeholder.com/70?text=Char1"
+            src="/img/p1.png"
             alt="Character 1"
             className={selectedCharacter === 0 ? "selected" : ""}
             onClick={() => handleCharacterSelect(0)}
           />
           <img
-            src="https://via.placeholder.com/70?text=Char2"
+            src="/img/p2.png"
             alt="Character 2"
             className={selectedCharacter === 1 ? "selected" : ""}
             onClick={() => handleCharacterSelect(1)}
           />
           <img
-            src="https://via.placeholder.com/70?text=Char3"
+            src="/img/p3.png"
             alt="Character 3"
             className={selectedCharacter === 2 ? "selected" : ""}
             onClick={() => handleCharacterSelect(2)}
           />
           <img
-            src="https://via.placeholder.com/70?text=Char4"
+            src="/img/p4.png"
             alt="Character 4"
             className={selectedCharacter === 3 ? "selected" : ""}
             onClick={() => handleCharacterSelect(3)}

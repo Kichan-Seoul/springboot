@@ -1,0 +1,77 @@
+.write-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  }
+  
+  .write-title-header {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #333;
+    text-align: center;
+  }
+  
+  .write-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .write-input,
+  .write-textarea {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: #eeeeee;
+    font-size: 1rem;
+    color: #333;
+    box-sizing: border-box;
+  }
+  
+  .write-input {
+    height: 48px;
+    padding: 0 16px;
+  }
+  
+  .write-textarea {
+    height: 200px;
+    padding: 16px;
+    resize: none;
+  }
+  
+  .write-input:focus,
+  .write-textarea:focus {
+    outline: none;
+    border: 1px solid #3f528c;
+    background-color: #f9f9f9;
+  }
+  
+  .write-button-group {
+    display: flex;
+    flex-direction: column; /* 버튼을 세로로 정렬 */
+  }
+  
+  .write-button {
+    width: 100%; /* 가로 전체 너비 */
+    padding: 14px 0;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .write-button.reset {
+    background-color: #ccc;
+    color: #000;
+  }
+  
+  .write-button.submit {
+    background-color: #3f528c;
+    color: #fff;
+  }
+  

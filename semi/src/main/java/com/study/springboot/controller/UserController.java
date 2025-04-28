@@ -1,13 +1,17 @@
 package com.study.springboot.controller;
 
-import com.study.springboot.dto.BurnedCaloriesDTO;
-import com.study.springboot.entity.User;
-import com.study.springboot.repository.UserRepository;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import com.study.springboot.entity.User;
+import com.study.springboot.repository.UserRepository;
+import com.study.springboot.service.ExerciseLogService;
+import com.study.springboot.service.UserService;
 
 @RestController
 @RequestMapping("/users")
@@ -15,35 +19,37 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository userRepository;
+    private final ExerciseLogService exerciseLogService;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
+    public UserController(UserRepository userRepository,
+                          ExerciseLogService exerciseLogService,
+                          UserService userService) {
         this.userRepository = userRepository;
+        this.exerciseLogService = exerciseLogService;
+        this.userService = userService; 
     }
 
-    // 전체 사용자 조회
     @GetMapping
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return StreamSupport.stream(userRepository.findAll().spliterator(), false)
+                            .collect(Collectors.toList());
     }
 
-    // 사용자 생성
     @PostMapping
     public User createUser(@RequestBody User user) {
         return userRepository.save(user);
     }
 
-    // ID로 사용자 조회
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") String id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    // 사용자 수정
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") String id, @RequestBody User user) {
         User existingUser = userRepository.findById(id).orElse(null);
         if (existingUser != null) {
-            // 수정할 항목만 갱신
             if (user.getHeight() != null) existingUser.setHeight(user.getHeight());
             if (user.getWeight() != null) existingUser.setWeight(user.getWeight());
             if (user.getGoalWeight() != null) existingUser.setGoalWeight(user.getGoalWeight());
@@ -54,24 +60,15 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    // ✅ 운동 칼로리만 업데이트
-    @PutMapping("/{id}/burned-calories")
-    public ResponseEntity<String> updateBurnedCalories(
-            @PathVariable("id") String id,
-            @RequestBody BurnedCaloriesDTO burnedDto
-    ) {
-        return userRepository.findById(id)
-                .map(user -> {
-                    user.setCaloriesBurned(burnedDto.getCaloriesBurned());
-                    userRepository.save(user);
-                    return ResponseEntity.ok("운동 칼로리가 저장되었습니다.");
-                })
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다."));
+    @GetMapping("/{id}/burned-calories")
+    public ResponseEntity<Integer> getTodayBurnedCalories(@PathVariable("id") String id) {
+        int todayCalories = exerciseLogService.getTodayCalories(id);
+        return ResponseEntity.ok(todayCalories);
     }
 
-    // 사용자 삭제
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable("id") String id) {
-        userRepository.deleteById(id);
+    public ResponseEntity<Void> deleteUser(@PathVariable("id") String id) {
+    	userService.deleteUserAndRelatedData(id);
+        return ResponseEntity.noContent().build();
     }
 }

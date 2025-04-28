@@ -1,79 +1,41 @@
-/* MyPost.css */
-
+/* MyPost 컴포넌트 전용 스타일 */
 .my-post-container {
-    display: flex;
-    justify-content: center;
-    padding: 3rem 1rem;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .my-post-wrapper {
-    width: 100%;
-    max-width: 800px;
-    background-color: #f7f7f7;
-    padding: 2rem;
+    padding: 30px;
+    background-color: #fafafa;
     border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  }
-  
-  .my-post-title {
-    font-size: 2rem;
-    text-align: center;
-    color: #222;
-    margin-bottom: 2rem;
-  }
-  
-  .list-container {
-    display: flex;
-    width: 92%;
-    flex-direction: column;
-    gap: 1.2rem;
-    justify-content: center;
-
-  }
-  
-  .list-item {
-    background-color: #ffffff;
-    padding: 1.5rem;
-    border-radius: 10px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    max-width: 900px;
+    margin: 40px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   
-  .list-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-  
-  .list-item h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
+  .my-post-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
     color: #333;
-    margin-bottom: 0.8rem;
-  }
-  
-  .list-item p {
-    font-size: 1rem;
-    color: #555;
-    line-height: 1.5;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
   }
   
   .my-post-empty {
+    color: #888;
     text-align: center;
-    color: #999;
-    font-size: 1rem;
-    margin-top: 2rem;
+    margin-top: 40px;
+    font-size: 1.1rem;
+  }
+  .back-button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: #333;
+    transition: background-color 0.2s ease;
   }
   
-  .detail-btn {
-    background-color: #3d509a;
-    color: white;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 17px;
-}
+  .back-button:hover {
+    background-color: #e0e0e0;
+  }
+  

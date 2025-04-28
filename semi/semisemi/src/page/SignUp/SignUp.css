@@ -126,12 +126,13 @@ button[type="submit"] {
 }
 
 .sign-up-container .character-container img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 130px;
   border-radius: 50%;
   cursor: pointer;
-  border: 3px solid #ccc;
+  border: 1px solid #ccc;
   transition: border-color 0.3s ease, transform 0.3s ease;
+  margin-top: 30px;
 }
 
 .sign-up-container .character-container img:hover {

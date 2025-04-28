@@ -25,65 +25,51 @@ public class CommentService {
     @Autowired
     private UserRepository userRepository;
 
+    // 댓글 등록
     public void saveComment(Long postId, CommentDTO dto) {
-    	   System.out.println("DTO userId: " + dto.getUserId());
-    	   System.out.println("DTO content: " + dto.getContent());
-
-        // 1. 게시글 찾기
         Post post = postRepository.findById(postId)
                 .orElseThrow(() -> new RuntimeException("게시글이 존재하지 않습니다."));
 
-        // 2. 사용자 찾기
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new RuntimeException("사용자가 존재하지 않습니다."));
 
-        // 3. 댓글 엔티티 생성
         Comment comment = new Comment();
         comment.setContent(dto.getContent());
         comment.setUser(user);
         comment.setPost(post);
 
-        // 4. 저장
         commentRepository.save(comment);
     }
 
-    
-    // 목록가져오기
-	public List<Comment> getCommentsByPostId(Long postId) {
-		return commentRepository.findByPostId(postId);
-	}
+    // 목록 가져오기
+    public List<Comment> getCommentsByPostId(Long postId) {
+        return commentRepository.findByPostId(postId);
+    }
 
-	// 삭제하기
-	public void deleteComment(Long commentId, String userId) {
-		 Comment comment = commentRepository.findById(commentId)
-			        .orElseThrow(() -> new RuntimeException("댓글 없음"));
+    // 댓글 삭제
+    public void deleteComment(Long commentId, String userId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("댓글 없음"));
 
-			    if (!comment.getUser().getUserId().equals(userId)) {
-			        throw new RuntimeException("삭제 권한 없음");
-			    }
+        if (!comment.getUser().getUserId().equals(userId)) {
+            throw new RuntimeException("삭제 권한 없음");
+        }
 
-			    commentRepository.delete(comment);	
-	}
+        commentRepository.delete(comment);
+    }
 
-	//수정하기
-	public void updateComment(Long commentId, String userId, String content) {
-		Comment comment = commentRepository.findById(commentId)
-		        .orElseThrow(() -> new RuntimeException("댓글이 존재하지 않습니다."));
+    // 댓글 수정
+    public void updateComment(Long commentId, String userId, String content) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("댓글이 존재하지 않습니다."));
 
-		    if (!comment.getUser().getUserId().equals(userId)) {
-		        throw new RuntimeException("수정 권한이 없습니다.");
-		    }
+        if (!comment.getUser().getUserId().equals(userId)) {
+            throw new RuntimeException("수정 권한이 없습니다.");
+        }
 
-		    comment.setContent(content); // 새로운 내용으로 수정
-		    commentRepository.save(comment); // 수정 저장
-		
-	}
-
-
-	
-	
-	
-	
-	
-	
+        comment.setContent(content);
+        commentRepository.save(comment);
+    }
 }
+
+

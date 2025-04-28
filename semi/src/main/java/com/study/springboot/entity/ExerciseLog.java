@@ -1,32 +1,31 @@
+// 📁 entity/ExerciseLog.java
 package com.study.springboot.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "food_logs")
+@Table(name = "EXERCISE_LOGS")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class FoodLog {
-
+public class ExerciseLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "LOG_ID")
+    @Column(name = "LOG_ID") // ✅ 여기 중요!
     private Long logId;
 
     @Column(name = "USER_ID")
     private String userId;
 
-    @Column(name = "FOOD_ID")
-    private Long foodId;
+    @Column(name = "EXERCISE_ID")
+    private Long exerciseId;
 
-    private int quantity;
+    @Column(name = "DURATION_MIN")
+    private Integer durationMin;
 
-    @Column(name = "TOTAL_CALORIES")
-    private int totalCalories;
-
-    @Column(name = "MEAL_TIME")
-    private String mealTime;
+    @Column(name = "CALORIES_BURNED")
+    private Integer caloriesBurned;
 
     @Column(name = "LOG_DATE")
     private LocalDateTime logDate;

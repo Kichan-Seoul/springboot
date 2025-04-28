@@ -1,100 +1,187 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import './Challenge.css';
 
 const Challenge = () => {
-  // 챌린지 목록 상태 관리
   const [challenges, setChallenges] = useState([]);
+  const [participatingChallenges, setParticipatingChallenges] = useState([]);
   const [title, setTitle] = useState("");
-  const [difficulty, setDifficulty] = useState("초급");
-  const [category, setCategory] = useState("");  // 카테고리 상태 추가
+  const [difficulty, setDifficulty] = useState("전체");
+  const [pointReward, setPointReward] = useState(50);
+  const [userId, setUserId] = useState("");
 
-  // 챌린지 목록 조회
   useEffect(() => {
-    // 카테고리 필터가 비어있으면 모든 챌린지를 가져오고, 카테고리가 있으면 그에 맞는 챌린지를 조회
+    const loggedInUserId = localStorage.getItem("userId");
+    if (loggedInUserId) {
+      setUserId(loggedInUserId);
+    } else {
+      alert("로그인된 사용자 정보가 없습니다.");
+    }
+  }, []);
+
+  useEffect(() => {
     let url = "http://localhost:8080/challenges";
-    if (category) {
-      url = `http://localhost:8080/challenges/category/${category}`;
+    if (difficulty !== "전체") {
+      url = `http://localhost:8080/challenges/filter?difficulty=${difficulty}`;
+    }
+    axios.get(url)
+      .then(res => setChallenges(res.data))
+      .catch(err => console.error("챌린지 불러오기 실패:", err));
+  }, [difficulty]);
+
+  useEffect(() => {
+    if (userId) {
+      axios.get(`http://localhost:8080/challenges/participating`, { params: { userId } })
+        .then(res => setParticipatingChallenges(res.data))
+        .catch(err => console.error("진행 중인 챌린지 불러오기 실패:", err));
+    }
+  }, [userId]);
+
+  const handleDifficultyChange = (e) => {
+    setDifficulty(e.target.value);
+  };
+
+  const handleChallengeClick = (challengeId, challengeReward) => {
+    if (!userId) {
+      alert("로그인된 사용자 정보가 없습니다.");
+      return;
     }
 
-    axios.get(url)
-      .then(response => {
-        console.log(response.data);  // 데이터 확인
-        setChallenges(response.data);
+    axios.post(`http://localhost:8080/challenges/${challengeId}/participate`, null, {
+      params: { userId }
+    })
+      .then(() => {
+        alert('도전하기 성공!');
+        axios.get(`http://localhost:8080/challenges/participating`, { params: { userId } })
+          .then(res => setParticipatingChallenges(res.data))
+          .catch(err => console.error("참여 목록 새로고침 실패:", err));
       })
-      .catch(error => {
-        console.error("챌린지 불러오기 실패:", error);
+      .catch(err => {
+        console.error("도전하기 실패:", err);
+        alert("도전하기 실패");
       });
-  }, [category]);  // 카테고리 값이 바뀔 때마다 호출되도록
+  };
 
-  // 챌린지 추가 폼 제출
+  const handleSuccess = (challengeId) => {
+    if (!userId) {
+      alert("로그인된 사용자 정보가 없습니다.");
+      return;
+    }
+  
+    axios.post(`http://localhost:8080/challenges/${challengeId}/complete`, null, {
+      params: { userId }
+    })
+      .then(() => {
+        alert('챌린지 성공!');
+  
+        // 🎯 여기가 핵심
+        axios.get(`http://localhost:8080/challenges/participating`, { params: { userId } })
+          .then(res => setParticipatingChallenges(res.data))
+          .catch(err => console.error("참여 목록 새로고침 실패:", err));
+      })
+      .catch(err => {
+        console.error("챌린지 성공 처리 실패:", err);
+        alert("챌린지 성공 처리 실패");
+      });
+  };
+  
+
+  const handleFailure = (challengeId) => {
+    if (!userId) {
+      alert("로그인된 사용자 정보가 없습니다.");
+      return;
+    }
+    axios.post(`http://localhost:8080/challenges/${challengeId}/fail`, null, {
+      params: { userId }
+    })
+      .then(() => {
+        alert('챌린지 실패!');
+        setParticipatingChallenges(prev =>
+          prev.filter(ch => ch.challengeId !== challengeId)
+        );
+      })
+      .catch(err => {
+        console.error("챌린지 실패 처리 실패:", err);
+        alert("챌린지 실패 처리 실패");
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newChallenge = { title, difficulty, category }; // category 추가
+    if (!title.trim() || !difficulty || difficulty === "전체" || !pointReward) {
+      alert("모든 필드를 정확히 입력해주세요.");
+      return;
+    }
 
-    axios.post("http://localhost:8080/challenges", newChallenge)
-      .then(response => {
-        setChallenges([...challenges, response.data]); // 새 챌린지를 목록에 추가
-        setTitle(""); // 폼 초기화
-        setDifficulty("초급"); // 폼 초기화
-        setCategory(""); // 카테고리 초기화
-      })
-      .catch(error => {
-        console.error("챌린지 추가 실패:", error);
-      });
-  };
+    const today = new Date();
+    const thirtyDaysLater = new Date(today);
+    thirtyDaysLater.setDate(today.getDate() + 30);
 
-  // 참여하기 버튼 처리 (ChallengeParticipation)
-  const handleParticipation = (challengeId) => {
-    const userId = "userId123"; // 사용자 ID 예시 (실제 사용자 ID는 로그인 시스템에서 받아와야 함)
-
-    const participation = {
-      userId,
-      challengeId,
-      status: '진행 중',
-      joinedAt: new Date(),
+    const newChallenge = {
+      title,
+      difficulty,
+      category: "기타",
+      startDate: today.toISOString().slice(0, 10),
+      endDate: thirtyDaysLater.toISOString().slice(0, 10),
+      pointReward: parseInt(pointReward, 10)
     };
 
-    axios.post("http://localhost:8080/challenge-participations", participation)
-      .then(response => {
-        alert("참여 성공!");
-        // 필요한 경우, 참여 목록에 추가하거나 업데이트
+    axios.post("http://localhost:8080/challenges", newChallenge)
+      .then(res => {
+        setChallenges(prev => [...prev, res.data]);
+        setTitle("");
+        setDifficulty("전체");
+        setPointReward(50);
       })
-      .catch(error => {
-        console.error("참여 실패:", error);
-        alert("참여 실패!");
+      .catch(err => {
+        console.error("챌린지 추가 실패:", err);
+        alert("서버 오류로 챌린지를 추가할 수 없습니다.");
       });
-  };
-
-  // 카테고리 필터 처리
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.value);  // 카테고리 변경 시 상태 업데이트
   };
 
   return (
-    <div>
+    <div className="challenge-container">
       <h1>챌린지 목록</h1>
-      
-      {/* 카테고리 필터 */}
-      <div>
-        <label>카테고리 선택:</label>
-        <select value={category} onChange={handleCategoryChange}>
-          <option value="">전체</option>
+
+      <div className="difficulty-filter">
+        <label htmlFor="difficulty">난이도 선택:</label>
+        <select id="difficulty" value={difficulty} onChange={handleDifficultyChange}>
+          <option value="전체">전체</option>
           <option value="초급">초급</option>
           <option value="중급">중급</option>
           <option value="고급">고급</option>
         </select>
       </div>
 
-      {/* 챌린지 목록 표시 */}
-      <div>
+      <h2>진행 중인 챌린지</h2>
+      <div className="challenge-list">
+        {participatingChallenges.length > 0 ? (
+          participatingChallenges.map(challenge => (
+            <div key={challenge.participationId || challenge.challengeId} className="challenge-card">
+              <h3>{challenge.title}</h3>
+              <p>난이도: {challenge.difficulty}</p>
+              <p>상태: {challenge.status || "진행 중"}</p>
+              <p>리워드 점수: {challenge.pointReward || 0}</p>
+              <button onClick={() => handleSuccess(challenge.challengeId)}>성공</button>
+              <button onClick={() => handleFailure(challenge.challengeId)}>실패</button>
+            </div>
+          ))
+        ) : (
+          <p>진행 중인 챌린지가 없습니다.</p>
+        )}
+      </div>
+
+      <h2>전체 챌린지 목록</h2>
+      <div className="challenge-list">
         {challenges.length > 0 ? (
           challenges.map(challenge => (
             <div key={challenge.challengeId} className="challenge-card">
               <h3>{challenge.title}</h3>
               <p>난이도: {challenge.difficulty}</p>
-              <p>카테고리: {challenge.category}</p>
-              <button onClick={() => handleParticipation(challenge.challengeId)}>
-                참여하기
+              <p>상태: {challenge.status || "대기 중"}</p>
+              <p>리워드 점수: {challenge.pointReward || 0}</p>
+              <button onClick={() => handleChallengeClick(challenge.challengeId, challenge.pointReward)}>
+                도전하기
               </button>
             </div>
           ))
@@ -103,36 +190,36 @@ const Challenge = () => {
         )}
       </div>
 
-      {/* 챌린지 추가 폼 */}
       <h2>챌린지 추가</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="challenge-form" onSubmit={handleSubmit}>
         <label>챌린지 제목:</label>
-        <input 
-          type="text" 
-          value={title} 
-          onChange={(e) => setTitle(e.target.value)} 
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           required
         />
+
         <label>난이도:</label>
-        <select 
-          value={difficulty} 
-          onChange={(e) => setDifficulty(e.target.value)} 
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
           required
         >
+          <option value="전체">-- 선택 --</option>
           <option value="초급">초급</option>
           <option value="중급">중급</option>
           <option value="고급">고급</option>
         </select>
-        <label>카테고리:</label>
-        <select 
-          value={category} 
-          onChange={(e) => setCategory(e.target.value)} 
+
+        <label>리워드 점수:</label>
+        <input
+          type="number"
+          value={pointReward}
+          onChange={(e) => setPointReward(e.target.value)}
           required
-        >
-          <option value="초급">초급</option>
-          <option value="중급">중급</option>
-          <option value="고급">고급</option>
-        </select>
+        />
+
         <button type="submit">챌린지 추가</button>
       </form>
     </div>

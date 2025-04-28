@@ -48,6 +48,5 @@ public class User {
     @Column(name = "PROFILE_IMAGE_URL")
     private String profileImageUrl;
 
-    @Column(name = "CALORIES_BURNED")
-    private Integer caloriesBurned;
+  
 }

@@ -1,27 +1,28 @@
+// 📁 controller/ExerciseLogController.java
 package com.study.springboot.controller;
+
+import com.study.springboot.dto.ExerciseLogDto;
+import com.study.springboot.service.ExerciseLogService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.study.springboot.service.ExerciseLogService;
-
-import lombok.RequiredArgsConstructor;
-
 @RestController
+@RequestMapping("/exercise-logs")
 @RequiredArgsConstructor
-@RequestMapping("/api/exercise-types")
 public class ExerciseLogController {
 
     private final ExerciseLogService exerciseLogService;
 
-    @GetMapping("/today")
-    public ResponseEntity<List<String>> getTodayExerciseTypes(@RequestParam String userId) {
-        List<String> types = exerciseLogService.getTodayExerciseTypes(userId);
-        return ResponseEntity.ok(types);
+    @PostMapping("/bulk")
+    public ResponseEntity<?> saveLogs(@RequestBody List<ExerciseLogDto> logs) {
+        if (logs == null || logs.isEmpty()) {
+            return ResponseEntity.badRequest().body("운동 로그가 비어 있습니다.");
+        }
+
+        exerciseLogService.saveAll(logs);
+        return ResponseEntity.ok("운동 로그 저장 완료!");
     }
 }

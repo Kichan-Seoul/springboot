@@ -31,13 +31,13 @@ const Edit = () => {
     const updatedPost = {
       title,
       content,
-      userId: currentUser
+      userId: currentUser,
     };
-
+  
     axios.put(`http://localhost:8080/posts/${id}`, updatedPost)
       .then(() => {
         alert("수정 완료!");
-        navigate(`/post/${id}`);
+        navigate("/community"); // ✅ 수정 후 커뮤니티로 이동
       })
       .catch((err) => {
         console.error("수정 실패:", err);
@@ -60,8 +60,15 @@ const Edit = () => {
         onChange={(e) => setContent(e.target.value)}
       />
       <div className="button-row">
-        <button className="cancel-btn" onClick={() => navigate(`/post/${id}`)}>취소</button>
-        <button className="update-btn" onClick={handleUpdate}>수정 완료</button>
+        <button
+          className="cancel-btn"
+          onClick={() => navigate("/community")} // ✅ 취소 → 커뮤니티
+        >
+          취소
+        </button>
+        <button className="update-btn" onClick={handleUpdate}>
+          수정 완료
+        </button>
       </div>
     </div>
   );

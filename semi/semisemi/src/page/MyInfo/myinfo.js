@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './myinfo.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const MyInfo = () => {
-  const [isEditable, setIsEditable] = useState(false);  // 정보 수정 가능 여부
+const MyInfo = ({ handleLogout }) => { 
+  const [isEditable, setIsEditable] = useState(false);
   const [userInfo, setUserInfo] = useState({
     id: '',
     name: '',
@@ -14,17 +15,14 @@ const MyInfo = () => {
     goalWeight: '',
   });
 
-  const userId = localStorage.getItem('userId');  // 로컬 스토리지에서 userId를 가져옵니다.
+  const navigate = useNavigate();
+  const userId = localStorage.getItem('userId');
 
-  // useEffect를 사용해 사용자 정보 가져오기
   useEffect(() => {
     if (userId) {
       axios.get(`http://localhost:8080/users/${userId}`)
         .then((response) => {
           const data = response.data;
-          console.log("Server Response:", data);  // 서버 응답 데이터 확인
-
-          // 상태 업데이트
           setUserInfo({
             id: data.userId || '',
             name: data.name || '',
@@ -41,7 +39,7 @@ const MyInfo = () => {
     } else {
       console.error('유효한 userId가 없습니다.');
     }
-  }, [userId]);  // userId가 변경될 때마다 다시 데이터를 가져옵니다.
+  }, [userId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,24 +51,20 @@ const MyInfo = () => {
       const { height, weight, goalWeight } = userInfo;
       const numberRegex = /^[0-9]+$/;
 
-      // 입력 값 검증
       if (!height || !weight || !goalWeight) {
         alert('값을 모두 입력해주세요.');
         return;
       }
 
-      // 숫자만 입력하도록 체크
       if (!numberRegex.test(height) || !numberRegex.test(weight) || !numberRegex.test(goalWeight)) {
         alert('숫자만 입력해주세요.');
         return;
       }
 
-      // 수정된 정보를 DB에 전송 (성별은 보내지 않음)
       axios.put(`http://localhost:8080/users/${userId}`, {
         height: userInfo.height,
         weight: userInfo.weight,
         goalWeight: userInfo.goalWeight,
-        // 성별은 수정하지 않으므로 포함시키지 않음
       })
         .then((response) => {
           if (response.status === 200) {
@@ -85,7 +79,28 @@ const MyInfo = () => {
         });
     }
 
-    setIsEditable((prev) => !prev);  // 수정 모드 토글
+    setIsEditable((prev) => !prev);
+  };
+
+  const handleDeleteAccount = () => {
+    const confirmed = window.confirm('정말 탈퇴하시겠습니까? 탈퇴 시 모든 정보가 삭제됩니다.');
+    if (confirmed) {
+      axios.delete(`http://localhost:8080/users/${userId}`)
+        .then((response) => {
+          if (response.status === 204 || response.status === 200) {
+            alert('회원 탈퇴가 완료되었습니다.');
+            localStorage.clear(); 
+            handleLogout();  // 여기!!
+            navigate('/login'); 
+          } else {
+            alert('서버 오류로 탈퇴에 실패했습니다.');
+          }
+        })
+        .catch((error) => {
+          console.error('회원 탈퇴 실패:', error);
+          alert('회원 탈퇴 실패: ' + error.message);
+        });
+    }
   };
 
   return (
@@ -94,56 +109,32 @@ const MyInfo = () => {
         <h2 className="myinfo-title">내 프로필</h2>
 
         <div className="myinfo-form">
-          <div className="info-group">
-            <label>아이디</label>
-            <input type="text" value={userInfo.id} disabled />
-          </div>
-          <div className="info-group">
-            <label>이름</label>
-            <input type="text" value={userInfo.name} disabled />
-          </div>
-          <div className="info-group">
-            <label>생년월일</label>
-            <input type="text" value={userInfo.birth} disabled />
-          </div>
-          <div className="info-group">
-            <label>성별</label>
-            <input type="text" value={userInfo.gender} disabled />
-          </div>
-          <div className="info-group">
-            <label>키</label>
-            <input
-              type="text"
-              name="height"
-              value={userInfo.height}
-              disabled={!isEditable}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="info-group">
-            <label>몸무게</label>
-            <input
-              type="text"
-              name="weight"
-              value={userInfo.weight}
-              disabled={!isEditable}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="info-group">
-            <label>목표 몸무게</label>
-            <input
-              type="text"
-              name="goalWeight"
-              value={userInfo.goalWeight}
-              disabled={!isEditable}
-              onChange={handleChange}
-            />
-          </div>
+          {['id', 'name', 'birth', 'gender'].map((field) => (
+            <div className="info-group" key={field}>
+              <label>{field === 'id' ? '아이디' : field === 'name' ? '이름' : field === 'birth' ? '생년월일' : '성별'}</label>
+              <input type="text" value={userInfo[field]} disabled />
+            </div>
+          ))}
+          {['height', 'weight', 'goalWeight'].map((field) => (
+            <div className="info-group" key={field}>
+              <label>{field === 'height' ? '키' : field === 'weight' ? '몸무게' : '목표 몸무게'}</label>
+              <input
+                type="text"
+                name={field}
+                value={userInfo[field]}
+                disabled={!isEditable}
+                onChange={handleChange}
+              />
+            </div>
+          ))}
         </div>
 
         <button className="edit-button" onClick={handleEditToggle}>
           {isEditable ? '수정 완료' : '내 정보 수정하기'}
+        </button>
+
+        <button className="delete-button" onClick={handleDeleteAccount}>
+          회원 탈퇴
         </button>
       </div>
     </div>

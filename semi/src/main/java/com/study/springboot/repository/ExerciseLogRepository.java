@@ -1,19 +1,34 @@
 package com.study.springboot.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import com.study.springboot.entity.ExerciseLog;
+
 public interface ExerciseLogRepository extends JpaRepository<ExerciseLog, Long> {
 
-    @Query("SELECT DISTINCT e.type " +
-           "FROM ExerciseLog l JOIN Exercise e ON l.exerciseId = e.exerciseId " +
-           "WHERE l.userId = :userId " +
-           "AND TRUNC(l.logDate) = TRUNC(SYSDATE) " +
-           "FETCH FIRST 3 ROWS ONLY")
-    List<String> findTodayExerciseTypes(@Param("userId") String userId);
+   
+    @Query(
+            value = "SELECT DISTINCT ex.TYPE " +
+                    "FROM EXERCISE_LOGS l " +
+                    "JOIN EXERCISES ex ON l.EXERCISE_ID = ex.EXERCISE_ID " +
+                    "WHERE l.USER_ID = :userId " +
+                    "AND TRUNC(l.LOG_DATE) = TRUNC(SYSDATE) " +
+                    "FETCH FIRST 5 ROWS ONLY",
+            nativeQuery = true
+        )
+        List<String> findTodayExerciseTypes(@Param("userId") String userId);
+    
+    @Query(
+            value = "SELECT SUM(e.CALORIES_BURNED) FROM EXERCISE_LOGS e WHERE e.USER_ID = :userId AND TRUNC(e.LOG_DATE) = TRUNC(:date)",
+            nativeQuery = true
+        )
+        Integer sumTodayCaloriesByUserId(@Param("userId") String userId, @Param("date") LocalDate date);
+
+        // userId로 운동 기록 전체 삭제
+        void deleteByUserId(String userId);
 }

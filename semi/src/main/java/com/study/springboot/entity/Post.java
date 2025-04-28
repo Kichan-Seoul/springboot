@@ -1,32 +1,59 @@
 package com.study.springboot.entity;
 
-import jakarta.persistence.*;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "POSTS") // 테이블 이름 명시
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // Hibernate 프록시 객체 무시
+@Table(name = "POSTS")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@EntityListeners(AuditingEntityListener.class)
+@DynamicUpdate
 public class Post {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동 증가 설정
-    @Column(name = "POST_ID") // 컬럼명 'POST_ID' 명시
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "POST_ID")
     private Long id;
 
     private String title;
     private String content;
 
-    // User와의 관계 설정 (게시글 작성자)
+    @CreatedDate
+    @Column(name = "CREATED_AT", updatable = false)
+    private LocalDateTime createdAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID") // 외래 키 설정
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})  // 추가
+    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
     private User user;
 
-    // Getters and Setters
+    // ✅ 공지 여부 필드 추가
+    @Column(name = "IS_NOTICE")
+    private Boolean isNotice = false; // 기본 false로 설정
+    
+    // ✅ 추가: 조회수 필드
+    @Column(name = "VIEWS")
+    private Integer views = 0;
+
 }

@@ -93,3 +93,101 @@
   color: #3f528c;
   font-weight: normal;
 }
+/* 📅 식사 기록 카드 */
+.food-log-section {
+  margin-top: 2rem;
+  padding: 20px;
+  background: #f9fbfd;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  font-family: 'Arial', sans-serif;
+}
+
+/* 날짜 제목 */
+.food-log-section h3 {
+  color: #3f528c;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 리스트 전체 */
+.food-log-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+/* 리스트 아이템 */
+.food-log-list li {
+  background-color: #ffffff;
+  border: 1px solid #d0e3f0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #3f528c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+.food-log-list li:hover {
+  background-color: #e8f0f8;
+}
+
+.food-log-meal {
+  font-weight: bold;
+}
+
+.food-log-kcal {
+  color: #ff5050;
+  font-weight: bold;
+}
+
+
+/* 🟦 3칸 식사 시간 그리드 */
+.meal-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 1.5rem;
+}
+
+.meal-column {
+  flex: 1;
+  background-color: #ffffff;
+  border: 1px solid #d0e3f0;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.06);
+}
+
+.meal-column h4 {
+  text-align: center;
+  color: #3f528c;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border-bottom: 1px solid #d0e3f0;
+  padding-bottom: 5px;
+}
+
+.meal-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.meal-column li {
+  font-size: 0.95rem;
+  padding: 6px 4px;
+  color: #555;
+  border-bottom: 1px dashed #eee;
+}
+
+.meal-column li:last-child {
+  border-bottom: none;
+}
