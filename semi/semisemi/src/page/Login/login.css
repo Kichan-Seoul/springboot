@@ -1,4 +1,4 @@
-/* login.css */
+
 .login-container {
   display: flex;
   justify-content: center;
@@ -115,7 +115,6 @@
   text-decoration: underline;
 }
 
-/* 회원가입 버튼 */
 .signup-button {
   width: 100%;
   padding: 12px;
@@ -130,14 +129,14 @@
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover 시 색상 변경 */
+
 .signup-button:hover {
   background-color: #2a457a;
-  transform: scale(1.05);  /* 버튼 크기 증가 */
+  transform: scale(1.05);  
 }
 
-/* 클릭(활성화) 시 색상 변경 */
+
 .signup-button:active {
   background-color: #1a2a47;
-  transform: scale(1.03);  /* 클릭 시 크기 약간 줄어듦 */
+  transform: scale(1.03); 
 }

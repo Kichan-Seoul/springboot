@@ -6,13 +6,12 @@ import './MyPost.css';
 
 const MyPost = () => {
   const [posts, setPosts] = useState([]);
-  const userId = localStorage.getItem("userId"); // 또는 context/userState 등에서 가져오기
+  const userId = localStorage.getItem("userId"); 
   const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:8080/posts")
       .then((res) => {
-        // console.log("서버에서 받은 데이터:", res.data);
         console.log("받은 전체 게시글:", res.data);
         const userId = localStorage.getItem("userId");  
         const myPosts = res.data.filter(post => String(post.userId) === String(userId));

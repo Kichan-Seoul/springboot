@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../SignUp/SignUp.css";  // SignUp 스타일 적용
+import "../SignUp/SignUp.css";  
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,15 +17,15 @@ const SignUp = () => {
     goalWeight: "",
   });
 
-  const [selectedCharacter, setSelectedCharacter] = useState(null); // 선택된 캐릭터
-  const [isIdValid, setIsIdValid] = useState(false); // ID 중복 확인 여부
+  const [selectedCharacter, setSelectedCharacter] = useState(null); 
+  const [isIdValid, setIsIdValid] = useState(false); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleCharacterSelect = (index) => {
-    setSelectedCharacter(index); // 선택된 캐릭터 인덱스를 저장
+    setSelectedCharacter(index); 
   };
 
   const handleIdCheck = async () => {
@@ -59,7 +59,7 @@ const SignUp = () => {
     try {
       const newUser = {
         ...form,
-        profileImageUrl: selectedCharacter.toString(), // 여기 추가! (문자열로 보내줌)
+        profileImageUrl: selectedCharacter.toString(), 
       };
 
       const response = await axios.post("http://localhost:8080/users", newUser);
@@ -81,7 +81,6 @@ const SignUp = () => {
     <div className="sign-up-container">
       <h2>회원가입</h2>
       <form onSubmit={handleSubmit}>
-        {/* ID 입력란과 중복확인 버튼 */}
         <div className="input-group">
           <label htmlFor="userId">아이디:</label>
           <input name="userId" placeholder="아이디" onChange={handleChange} required />
@@ -90,7 +89,7 @@ const SignUp = () => {
           </button>
         </div>
 
-        {/* 비밀번호, 이름, 성별 */}
+       
         <div className="input-group">
           <label htmlFor="passwordHash">비밀번호:</label>
           <input name="passwordHash" type="password" placeholder="비밀번호" onChange={handleChange} required />
@@ -109,13 +108,13 @@ const SignUp = () => {
           </select>
         </div>
 
-        {/* 생년월일 */}
+     
         <div className="input-group">
           <label htmlFor="birthDate">생년월일:</label>
           <input name="birthDate" type="date" onChange={handleChange} />
         </div>
 
-        {/* 키, 몸무게, 목표 몸무게 */}
+     
         <div className="input-group-multiple">
           <div className="input-group">
             <label htmlFor="height">키:</label>
@@ -133,7 +132,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* 캐릭터 선택 */}
+ 
         <div className="character-container">
           <img
             src="/img/p1.png"

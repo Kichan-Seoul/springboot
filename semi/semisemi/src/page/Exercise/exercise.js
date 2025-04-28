@@ -8,7 +8,7 @@ const Exercise = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedTypes, setExpandedTypes] = useState({});
 
-  // ✅ 하루마다 초기화
+
   useEffect(() => {
     const today = new Date().toISOString().split("T")[0];
     const storedDate = localStorage.getItem("lastExerciseDate");
@@ -77,7 +77,7 @@ const Exercise = () => {
     }));
   };
 
-  // ✅ 저장 후 초기화 포함
+
   const handleSaveExercise = () => {
     const userId = localStorage.getItem("userId");
     if (!userId) {
@@ -100,9 +100,9 @@ const Exercise = () => {
     axios.post("http://localhost:8080/exercise-logs/bulk", logs)
       .then(() => {
         alert("운동 정보가 저장되었습니다!");
-        setTodayExercises([]);      // ✅ 초기화
-        setSearchTerm("");          // ✅ 검색도 초기화
-        setExpandedTypes({});       // ✅ 펼친 그룹도 초기화 (선택사항)
+        setTodayExercises([]);     
+        setSearchTerm("");         
+        setExpandedTypes({});     
       })
       .catch(err => {
         console.error("운동 저장 실패:", err);

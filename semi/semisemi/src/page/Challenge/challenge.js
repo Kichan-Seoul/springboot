@@ -74,7 +74,7 @@ const Challenge = () => {
       .then(() => {
         alert('챌린지 성공!');
   
-        // 🎯 여기가 핵심
+   
         axios.get(`http://localhost:8080/challenges/participating`, { params: { userId } })
           .then(res => setParticipatingChallenges(res.data))
           .catch(err => console.error("참여 목록 새로고침 실패:", err));

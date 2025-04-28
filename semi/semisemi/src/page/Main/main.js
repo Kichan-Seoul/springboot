@@ -11,7 +11,6 @@ const Main = () => {
   const [burnedCalories, setBurnedCalories] = useState(null);
   const [mealCalories, setMealCalories] = useState({ breakfast: 0, lunch: 0, dinner: 0 });
   const [exerciseTypes, setExerciseTypes] = useState([]);
-  const [darkMode, setDarkMode] = useState(false);
 
   const mainCharacterImages = {
     "0": "/img/main1.png",
@@ -35,10 +34,6 @@ const Main = () => {
   };
 
   useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode') === 'true';
-    setDarkMode(savedMode);
-    document.body.classList.toggle('dark-mode', savedMode);
-
     const userId = localStorage.getItem('userId');
     if (!userId) {
       console.error("userId가 없습니다.");
@@ -90,13 +85,6 @@ const Main = () => {
 
   }, []);
 
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('darkMode', newMode);
-    document.body.classList.toggle('dark-mode', newMode);
-  };
-
   if (!user || todayCalories === null || burnedCalories === null) {
     return <div style={{ textAlign: 'center' }}>로딩 중...</div>;
   }
@@ -112,10 +100,6 @@ const Main = () => {
 
   return (
     <div className="main-container">
-      <button onClick={toggleDarkMode} className="dark-toggle">
-        {darkMode ? '☀️ 라이트 모드' : '🌙 다크 모드'}
-      </button>
-
       <div className="user-info">
         키: {user.height}cm | 현재 몸무게: {user.weight}kg | 목표 몸무게: {user.goalWeight}kg |
         도전 점수: {user.challengeScore}점 | 🔥 잔여 칼로리: {remainingCalories}kcal

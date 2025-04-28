@@ -4,15 +4,20 @@
   padding: 12px 0;
 }
 
-/* 가운데 정렬된 컨텐츠 박스 */
+/* nav 전체 컨텐츠 */
 .navbar-content {
-  max-width: 700px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   padding: 0 20px;
+}
 
+/* 왼쪽 nav 리스트 묶음 */
+.nav-center {
+  display: flex;
+  align-items: center;
 }
 
 /* nav 리스트 스타일 */
@@ -36,17 +41,21 @@
   text-decoration: underline;
 }
 
-.nav-list{
-  margin-left: 20px;
-}
-
-/* 로그인/로그아웃 버튼 우측 */
+/* 로그인/로그아웃 영역 */
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 20px;
 }
 
+/* 환영 문구 스타일 */
+.welcome-text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* 로그아웃 버튼 스타일 */
 .logout-button {
   background-color: #ff6666;
   color: white;
@@ -55,9 +64,69 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  margin-left: 30px;
 }
 
 .logout-button:hover {
   background-color: #ff4444;
+}
+
+/* 로그인/회원가입 리스트 */
+.auth-links {
+  display: flex;
+  gap: 12px;
+}
+
+/* 태블릿 */
+@media (max-width: 768px) {
+  .navbar-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-center {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .nav-right {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .welcome-text {
+    font-size: 14px;
+  }
+
+  .logout-button {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  .auth-links {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* 핸드폰 */
+@media (max-width: 480px) {
+  .nav-list li a {
+    font-size: 14px;
+  }
+
+  .logout-button {
+    padding: 4px 8px;
+    font-size: 13px;
+  }
+
+  .welcome-text {
+    font-size: 13px;
+  }
 }

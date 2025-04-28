@@ -13,7 +13,7 @@ const Write = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const userId = localStorage.getItem("userId"); // ✅ 로그인한 사용자 ID
+    const userId = localStorage.getItem("userId"); 
 
     if (!userId || !password) {
       alert("로그인이 필요하거나 비밀번호가 누락되었습니다.");
@@ -23,8 +23,8 @@ const Write = () => {
     const postData = {
       title,
       content,
-      userId,               // ✅ 백엔드 요구
-      passwordHash: password,  // ✅ 백엔드 요구
+      userId,             
+      passwordHash: password, 
     };
 
     try {

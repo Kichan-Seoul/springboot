@@ -389,7 +389,7 @@ CREATE TABLE challenge_participation (
   completed_at DATE,
   earned_points NUMBER DEFAULT 0,
   CONSTRAINT fk_challenge FOREIGN KEY (challenge_id) REFERENCES challenges(challenge_id),
-  CONSTRAINT chk_status CHECK (status IN ('진행 중', '대기중', '완료', '취소'))
+  CONSTRAINT chk_status CHECK (status IN ('진행 중', '완료', '취소'))
 );
 
 -- 4. 챌린지 데이터 전체 삽입

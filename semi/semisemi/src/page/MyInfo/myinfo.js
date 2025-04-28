@@ -90,7 +90,7 @@ const MyInfo = ({ handleLogout }) => {
           if (response.status === 204 || response.status === 200) {
             alert('회원 탈퇴가 완료되었습니다.');
             localStorage.clear(); 
-            handleLogout();  // 여기!!
+            handleLogout();  
             navigate('/login'); 
           } else {
             alert('서버 오류로 탈퇴에 실패했습니다.');

@@ -10,9 +10,10 @@ const Community = () => {
   const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [rankers, setRankers] = useState([]); 
   const postsPerPage = 5;
 
-  // ✅ posts 불러오는 함수 분리
+  
   const fetchPosts = async () => {
     try {
       const response = await axios.get("http://localhost:8080/posts");
@@ -22,9 +23,26 @@ const Community = () => {
     }
   };
 
+  
+  const fetchRankers = async () => {
+    try {
+      const response = await axios.get("http://localhost:8080/users");
+      const users = response.data;
+
+      const top3 = users
+        .sort((a, b) => (b.challengeScore || 0) - (a.challengeScore || 0))
+        .slice(0, 3);
+
+      setRankers(top3);
+    } catch (error) {
+      console.error("랭킹 불러오기 실패:", error);
+    }
+  };
+
   useEffect(() => {
     fetchPosts();
-  }, []); 
+    fetchRankers(); 
+  }, []);
 
   const filteredPosts = posts.filter((post) =>
     post.title?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -67,9 +85,11 @@ const Community = () => {
       <div className="rank-box">
         <div className="crown">👑</div>
         <ol>
-          <li>1. 0000</li>
-          <li>2. 0000</li>
-          <li>3. 0000</li>
+          {rankers.map((user, index) => (
+            <li key={user.userId}>
+              {index + 1}. {user.name} - {user.challengeScore}점
+            </li>
+          ))}
         </ol>
       </div>
     </div>

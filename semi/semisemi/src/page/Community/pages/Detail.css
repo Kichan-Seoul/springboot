@@ -1,6 +1,6 @@
 .detail {
-    background-color: rgba(255, 255, 255, 0.8); /* ✅ 반투명 흰색 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);   /* ✅ 흐린 그림자 */
+    background-color: rgba(255, 255, 255, 0.8); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
     border-radius: 12px;
     padding: 2rem;
     margin: 2rem auto;
@@ -13,7 +13,7 @@
 .dtitle {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 1rem;         /* 제목 아래 공간 */
+    margin-bottom: 1rem;        
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #ccc;
 }

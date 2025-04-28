@@ -10,7 +10,7 @@ const Detail = () => {
   const navigate = useNavigate();
   const currentUser = localStorage.getItem("userId");
 
-  const hasIncreasedView = useRef(false); // ✅ 조회수 중복 방지용 ref
+  const hasIncreasedView = useRef(false);
 
   useEffect(() => {
     const fetchPost = async () => {

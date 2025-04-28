@@ -38,7 +38,7 @@ public class ChallengeParticipationService {
     public List<Challenge> getParticipatingChallenges(String userId) {
         try {
             List<ChallengeParticipation> participations =
-                challengeParticipationRepository.findByUser_UserIdAndStatus(userId, "진행 중");
+                challengeParticipationRepository.findByUser_UserIdAndStatus(userId, "대기 중");
 
             if (participations.isEmpty()) {
                 return new ArrayList<>();
@@ -61,7 +61,7 @@ public class ChallengeParticipationService {
                 ChallengeParticipation participation = new ChallengeParticipation();
                 participation.setChallenge(challenge);
                 participation.setUser(user);
-                participation.setStatus("대기중");
+                participation.setStatus("대기 중");
                 participation.setJoinedAt(LocalDate.now());
 
                 challengeParticipationRepository.save(participation);
@@ -77,7 +77,7 @@ public class ChallengeParticipationService {
         try {
             List<ChallengeParticipation> participations =
                 challengeParticipationRepository.findAllByChallenge_ChallengeIdAndUser_UserIdAndStatus(
-                    challengeId, userId, "대기중");
+                    challengeId, userId, "대기 중");
 
             System.out.println("조회된 participation 수: " + participations.size());
 

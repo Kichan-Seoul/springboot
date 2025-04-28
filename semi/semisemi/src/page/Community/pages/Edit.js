@@ -4,17 +4,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import './Edit.css';
 
 const Edit = () => {
-  const { id } = useParams();  // URL로부터 게시글 ID 받기
+  const { id } = useParams(); 
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  // 1. 기존 게시글 불러오기
+
   useEffect(() => {
     axios.get(`http://localhost:8080/posts/${id}`)
       .then((res) => {
-        console.log("불러온 게시글:", res.data);  // ✅ 이거 꼭 찍어봐
+        console.log("불러온 게시글:", res.data); 
 
         setTitle(res.data.title);
         setContent(res.data.content);
@@ -24,7 +24,7 @@ const Edit = () => {
       });
   }, [id]);
 
-  // 2. 수정 요청 보내기
+
   const currentUser = localStorage.getItem("userId");
 
   const handleUpdate = () => {
@@ -37,7 +37,7 @@ const Edit = () => {
     axios.put(`http://localhost:8080/posts/${id}`, updatedPost)
       .then(() => {
         alert("수정 완료!");
-        navigate("/community"); // ✅ 수정 후 커뮤니티로 이동
+        navigate("/community"); 
       })
       .catch((err) => {
         console.error("수정 실패:", err);
@@ -62,7 +62,7 @@ const Edit = () => {
       <div className="button-row">
         <button
           className="cancel-btn"
-          onClick={() => navigate("/community")} // ✅ 취소 → 커뮤니티
+          onClick={() => navigate("/community")}
         >
           취소
         </button>

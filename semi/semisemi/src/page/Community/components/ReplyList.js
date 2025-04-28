@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import './ReplyList.css';
 
 const ReplyList = () => {
-  const { id } = useParams(); // 게시글 id
+  const { id } = useParams(); 
   const [replies, setReplies] = useState([]);
   const [newReply, setNewReply] = useState("");
   const [editingId, setEditingId] = useState(null);

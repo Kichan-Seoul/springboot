@@ -71,4 +71,19 @@ public class UserController {
     	userService.deleteUserAndRelatedData(id);
         return ResponseEntity.noContent().build();
     }
+    
+    
+ 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody User loginRequest) {
+        User user = userRepository.findById(loginRequest.getUserId()).orElse(null);
+        if (user == null) return ResponseEntity.status(401).body("존재하지 않는 아이디입니다.");
+        if (!user.getPasswordHash().equals(loginRequest.getPasswordHash())) {
+            return ResponseEntity.status(401).body("비밀번호가 틀렸습니다.");
+        }
+        return ResponseEntity.ok(user);
+    }
+
+    
+    
 }

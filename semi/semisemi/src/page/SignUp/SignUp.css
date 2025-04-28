@@ -6,7 +6,7 @@
   align-items: center;
 }
 
-/* 흰색 박스 컨테이너 */
+
 .sign-up-container {
   background-color: #fff;
   padding: 40px;
@@ -117,7 +117,7 @@ button[type="submit"] {
   cursor: pointer;
 }
 
-/* 캐릭터 선택 원형 이미지 스타일 */
+
 .sign-up-container .character-container {
   display: flex;
   justify-content: center;

@@ -1,25 +1,21 @@
-// calendar.jsx 전체 코드 (KST 날짜 로직 수정 반영)
-
+// 📁 page/Calendar/Calendar.jsx
 import React, { useState, useEffect } from 'react';
-import './calendar.css';
 import CalendarComponent from 'react-calendar';
 import axios from 'axios';
+import './calendar.css'; // 원래 css 파일 그대로
 
 function Calendar({ userId }) {
   const [value, setValue] = useState(new Date());
   const [calorieData, setCalorieData] = useState([]);
   const [foodLogs, setFoodLogs] = useState([]);
+  const [exerciseLogs, setExerciseLogs] = useState([]);
+  const [exerciseList, setExerciseList] = useState([]); // 운동 목록 추가
 
-  
- // ✅ 수정된 KST 날짜 함수
- const getKSTDateString = (date) => {
-  const kst = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
-  return kst.toISOString().split('T')[0];
-};
+  const getKSTDateString = (date) => {
+    const kst = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
+    return kst.toISOString().split('T')[0];
+  };
 
-
-
-  // 🔍 날짜별 칼로리 표시
   const getCaloriesForDate = (date) => {
     const dateStr = getKSTDateString(date);
     const entry = calorieData.find(d => {
@@ -31,17 +27,34 @@ function Calendar({ userId }) {
     return entry ? `${entry.totalCalories} kcal` : '기록 없음';
   };
 
-  // 📅 선택 날짜 식사 기록 요청
+  // 🛠 운동 이름 찾는 함수
+  const getExerciseName = (exerciseId) => {
+    const exercise = exerciseList.find(ex => ex.id === exerciseId);
+    return exercise ? exercise.name : `운동 ID: ${exerciseId}`;
+  };
+
+  useEffect(() => {
+    if (!userId) return;
+    
+    // 🛠 운동 목록 불러오기
+    axios.get(`http://localhost:8080/exercises`)
+      .then((res) => setExerciseList(res.data))
+      .catch((err) => console.error('❌ [운동 목록 오류]', err));
+  }, [userId]);
+
   useEffect(() => {
     if (!userId || !value) return;
-
     const dateStr = getKSTDateString(value);
+
     axios.get(`http://localhost:8080/food-logs/${userId}?date=${dateStr}`)
       .then((res) => setFoodLogs(res.data))
       .catch((err) => console.error('❌ [식사 기록 오류]', err));
+
+    axios.get(`http://localhost:8080/exercise-logs/${userId}?date=${dateStr}`)
+      .then((res) => setExerciseLogs(res.data))
+      .catch((err) => console.error('❌ [운동 기록 오류]', err));
   }, [userId, value]);
 
-  // 📊 전체 날짜 칼로리 요청
   useEffect(() => {
     if (!userId) return;
 
@@ -51,9 +64,9 @@ function Calendar({ userId }) {
   }, [userId]);
 
   return (
-    <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto' }}>
+    <div style={{ padding: '40px', maxWidth: '900px', margin: '0 auto' }}>
       <h2 style={{ textAlign: 'center', color: '#3f528c', marginBottom: '1rem' }}>
-        내 식단 캘린더
+        내 건강 캘린더
       </h2>
 
       <CalendarComponent
@@ -62,38 +75,50 @@ function Calendar({ userId }) {
         calendarType="gregory"
         formatDay={(locale, date) => date.getDate()}
         showNeighboringMonth={false}
-        tileClassName={({ date, view }) => view === 'month' && date.getDay() === 6 ? 'saturday' : null}
+        tileClassName={({ date, view }) => view === 'month' && date.getDay() === 6 ? 'calendar-saturday' : null}
         tileContent={({ date, view }) =>
           view === 'month' && (
-            <div style={{ marginTop: 2, fontSize: '0.75rem', color: 'rgb(63, 82, 140)' }}>
+            <div style={{ marginTop: 2, fontSize: '0.75rem', color: '#3f528c' }}>
               {getCaloriesForDate(date)}
             </div>
           )
         }
       />
 
-      <div className="food-log-section">
-        <h3>📅 {getKSTDateString(value)} 식사 기록</h3>
-        {foodLogs.length === 0 ? (
-          <p style={{ color: '#999' }}>기록이 없습니다.</p>
-        ) : (
-          <div className="meal-grid">
-            {['아침', '점심', '저녁'].map((meal) => (
-              <div key={meal} className="meal-column">
-                <h4>{meal}</h4>
-                <ul>
-                  {foodLogs
-                    .filter(log => log.mealTime === meal)
-                    .map((log, i) => (
-                      <li key={i}>
-                        {log.foodName || '알 수 없음'} - {log.totalCalories} kcal
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        )}
+      <div className="calendar-log-section">
+        <h3>📅 {getKSTDateString(value)} 기록</h3>
+
+        <div className="calendar-meal-grid">
+          {['아침', '점심', '저녁'].map((meal) => (
+            <div key={meal} className="calendar-meal-column">
+              <h4>{meal}</h4>
+              <ul>
+                {foodLogs
+                  .filter(log => log.mealTime === meal)
+                  .map((log, i) => (
+                    <li key={i}>
+                      {log.foodName || '알 수 없음'} - {log.totalCalories} kcal
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="calendar-exercise-log">
+          <h4>🔥 운동 기록</h4>
+          {exerciseLogs.length === 0 ? (
+            <p style={{ color: '#999' }}>운동 기록 없음</p>
+          ) : (
+            <ul>
+              {exerciseLogs.map((log, idx) => (
+                <li key={idx}>
+                  {getExerciseName(log.exerciseId)} | 소요 시간: {log.durationMin}분 | 소모 칼로리: {log.caloriesBurned} kcal
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );
