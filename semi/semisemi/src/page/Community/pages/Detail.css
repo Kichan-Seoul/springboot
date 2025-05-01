@@ -83,4 +83,60 @@
     font-weight: bold;
     margin-right: 8px;
   }
+  .dark .detail {
+    background-color: rgba(30, 30, 30, 0.85);
+    color: #f0f0f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+    backdrop-filter: blur(4px);
+  }
+  
+  .dark .dtitle {
+    border-bottom: 1px solid #555;
+    color: #ffffff;
+  }
+  
+  .dark .dname {
+    color: #aaa;
+  }
+  
+  .dark .dcontent {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #444;
+  }
+  
+  .dark .detail-btn {
+    background-color: #526eff;
+    color: #fff;
+  }
+  
+  .dark .detail-button.edit {
+    background-color: #526eff;
+    color: #fff;
+  }
+  
+  .dark .detail-button.edit:hover {
+    background-color: #3d4de0;
+  }
+  
+  .dark .detail-button.delete {
+    background-color: #ff6666;
+    color: #fff;
+  }
+  
+  .dark .detail-button.delete:hover {
+    background-color: #cc3333;
+  }
+  
+  .dark .notice-tag {
+    background-color: #ffb84d;
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 16px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 6px rgba(255, 184, 77, 0.4);
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+  }
   

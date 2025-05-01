@@ -1,5 +1,3 @@
-
-
 .edit-container {
     display: flex;
     flex-direction: column;
@@ -81,3 +79,45 @@
   .update-btn:hover {
     background-color: #1f4694;
   }
+  .dark .edit-container {
+    background-color: #1e1e22;
+    color: #f0f0f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+  }
+  
+  .dark .edit-container h2 {
+    color: #ffffff;
+  }
+  
+  .dark .edit-container input,
+  .dark .edit-container textarea {
+    background-color: #2a2a2e;
+    color: #ffffff;
+    border: 1px solid #555;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .edit-container input:focus,
+  .dark .edit-container textarea:focus {
+    border-color: #709dff;
+  }
+  
+  .dark .cancel-btn {
+    background-color: #555;
+    color: #f0f0f0;
+  }
+  
+  .dark .cancel-btn:hover {
+    background-color: #777;
+  }
+  
+  .dark .update-btn {
+    background-color: #526eff;
+    color: #ffffff;
+  }
+  
+  .dark .update-btn:hover {
+    background-color: #3b57cc;
+  }
+  

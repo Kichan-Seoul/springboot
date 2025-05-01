@@ -112,3 +112,48 @@
 .reply-actions .delete-btn:hover {
   background-color: #c82333;
 }
+.dark .reply-section {
+  border-top: 2px solid #444;
+}
+
+.dark .reply-input,
+.dark .reply-edit-input {
+  background-color: #2a2a2e;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+.dark .reply-button {
+  background-color: #3f7df4;
+  color: #fff;
+}
+
+.dark .reply-button:hover {
+  background-color: #2c63d4;
+}
+
+.dark .reply-item {
+  background-color: #1e1e22;
+  border: 1px solid #444;
+  color: #e0e0e0;
+}
+
+.dark .reply-date {
+  color: #999;
+}
+
+.dark .reply-actions button:first-child {
+  background-color: #5c636a;
+}
+
+.dark .reply-actions button:first-child:hover {
+  background-color: #4a5057;
+}
+
+.dark .reply-actions .delete-btn {
+  background-color: #b52c3c;
+}
+
+.dark .reply-actions .delete-btn:hover {
+  background-color: #9a1f2e;
+}

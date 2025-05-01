@@ -86,3 +86,55 @@ text-align: center;
 .delete-button:hover {
 background-color: #c9302c;
 }
+
+.dark .myinfo-container {
+  background-color: #2a2a2e;
+}
+
+
+.dark .myinfo-box {
+  background-color: #2a2a2c;
+  color: #f0f0f0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+
+.dark .myinfo-title {
+  color: #9bbcff;
+}
+
+
+.dark .info-group label {
+  color: #ddd;
+}
+
+.dark .info-group input {
+  background-color: #3a4a61;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark .info-group input:disabled {
+  background-color: #3a4a61;
+  color: #aaa;
+  opacity: 0.7;
+}
+
+
+.dark .edit-button {
+  background-color: #4a6ed1;
+  color: #fff;
+}
+
+.dark .edit-button:hover {
+  background-color: #3859b8;
+}
+
+
+.dark .delete-button {
+  background-color: #e74c3c;
+}
+
+.dark .delete-button:hover {
+  background-color: #c0392b;
+}

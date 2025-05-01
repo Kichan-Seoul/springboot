@@ -43,7 +43,7 @@ public class FoodLogService {
         return rows.stream().map(row -> {
             Long foodId = ((BigDecimal) row[1]).longValue();
 
-            // ✅ 음식 이름 가져오기
+            // 음식 이름 가져오기
             Optional<Food> food = foodRepository.findById(foodId);
             String foodName = food.map(Food::getName).orElse("알 수 없음");
 

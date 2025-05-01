@@ -38,4 +38,29 @@
   .back-button:hover {
     background-color: #e0e0e0;
   }
+  .dark .my-post-container {
+    background-color: #1f1f23;
+    color: #f0f0f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid #2e2e2e;
+  }
+  
+  .dark .my-post-container h1 {
+    color: #ffffff;
+    border-bottom: 2px solid #444;
+  }
+  
+  .dark .my-post-empty {
+    color: #bbb;
+  }
+  
+  .dark .back-button {
+    background-color: #2e2e2e;
+    border: 1px solid #555;
+    color: #f0f0f0;
+  }
+  
+  .dark .back-button:hover {
+    background-color: #444;
+  }
   

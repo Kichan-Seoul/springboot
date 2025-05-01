@@ -21,3 +21,16 @@
     background-color: #91bde0;
     color: black;
   }
+  .dark .pagination button {
+    background-color: #4e6aad;
+    color: #fff;
+    border: 1px solid #6e84b7;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .pagination button:hover {
+    background-color: #6e84b7;
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  

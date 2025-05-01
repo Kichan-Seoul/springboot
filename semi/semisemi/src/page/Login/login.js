@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "../Login/login.css";  
+import "../Login/login.css";
 
 const Login = ({ setIsLoggedIn }) => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Login = ({ setIsLoggedIn }) => {
         userId: userId,
         passwordHash: password
       });
-      
+
       const user = res.data;
       if (user) {
         localStorage.setItem('userId', user.userId);
@@ -34,10 +34,15 @@ const Login = ({ setIsLoggedIn }) => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <div className="login-circle">로그인 후<br />이용가능</div>
-        <form onSubmit={handleLogin}>
+    <div className="login-wrapper">
+    <div className="login-card">
+      <div className="left-section">
+        <img src="/img/character.png" alt="칼로몽 로고" className="logo-image" />
+        <div className="logo-footer">로그인 후 이용가능</div>
+      </div>
+  
+      <div className="right-section">
+        <form onSubmit={handleLogin} className="login-form">
           <div className="input-group">
             <label>아이디</label>
             <input
@@ -63,6 +68,9 @@ const Login = ({ setIsLoggedIn }) => {
         </form>
       </div>
     </div>
+  </div>
+  
+
   );
 };
 

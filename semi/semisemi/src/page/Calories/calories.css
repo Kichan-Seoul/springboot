@@ -263,4 +263,70 @@
     justify-content: center;
     gap: 12px;
   }
+  .dark .calories-container,
+  .dark .calories-container h2,
+  .dark .calories-container h3,
+  .dark .calculated-kcal,
+  .dark .text-left,
+  .dark .text-right,
+  .dark .meal-box h3,
+  .dark .food-name,
+  .dark .food-calories,
+  .dark .total-calories-box,
+  .dark .text1,
+  .dark .selected-food-container p {
+    color: #e0e0e0;
+  }
+  
+
+  .dark .calories-container input[type="text"],
+  .dark .gram-input {
+    background-color: #2b2d30;
+    color: #ffffff;
+    border: 1px solid #444;
+  }
+
+  .dark .food-card {
+    background-color: #3a3d40;
+    color: #f0f0f0;
+    border: 1px solid #4a4d50;
+  }
+  
+
+  .dark .selected-food-container {
+    background: linear-gradient(135deg, #323538, #424548);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .meal-box {
+    background-color: #2a2d30;
+    color: #f1f1f1;
+    border: 1px solid #3c3f42;
+  }
+
+  .dark .food-item button {
+    background-color: #ff5c5c;
+    color: #fff;
+  }
+
+  .dark .total-calories-box {
+    background-color: #2d2f32;
+    color: #fefefe;
+    border: 1px solid #444;
+  }
+
+  .dark .save-button {
+    background-color: #2ecc71;
+    color: white;
+    font-weight: bold;
+  }
+ 
+  .dark .meal-buttons button {
+    background-color: #7195ff;
+    color: #ffffff;
+  }
+  
+  .dark .meal-buttons button:hover {
+    background-color: #5a7de0;
+  }
   

@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-
 import Navbar from './components/Navbar/Navbar';  
 import Main from './page/Main/main';  
 import Calories from './page/Calories/calories';  
@@ -16,6 +15,8 @@ import Write from './page/Community/pages/Write';
 import Detail from './page/Community/pages/Detail';  
 import MyPost from "./page/Community/pages/MyPost";
 import Edit from './page/Community/pages/Edit';
+
+import { DarkModeProvider } from './context/DarkModeContext'; // ✅ 추가
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,32 +51,34 @@ function App() {
   if (!isAuthLoaded) return <div>로딩 중...</div>;
 
   return (
-    <Router>
-      <Navbar
-        isLoggedIn={isLoggedIn}
-        handleLogout={handleLogout}
-        isAuthLoaded={isAuthLoaded}
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={isLoggedIn ? <Navigate to="/main" replace /> : <Login setIsLoggedIn={handleLogin} />}
+    <DarkModeProvider> {/* ✅ 여기 감싸기 */}
+      <Router>
+        <Navbar
+          isLoggedIn={isLoggedIn}
+          handleLogout={handleLogout}
+          isAuthLoaded={isAuthLoaded}
         />
-        <Route path="/login" element={<Login setIsLoggedIn={handleLogin} />} />
-        <Route path="/main" element={isLoggedIn ? <Main /> : <Navigate to="/" replace />} />
-        <Route path="/signup" element={<SignUp setIsLoggedIn={handleLogin} />} />
-        <Route path="/calendar" element={isLoggedIn ? <Calendar userId={localStorage.getItem('userId')} /> : <Navigate to="/" replace />} />
-        <Route path="/calories" element={isLoggedIn ? <Calories userId={localStorage.getItem('userId')} /> : <Navigate to="/" replace />} />
-        <Route path="/challenge" element={isLoggedIn ? <Challenge /> : <Navigate to="/" replace />} />
-        <Route path="/exercise" element={isLoggedIn ? <Exercise /> : <Navigate to="/" replace />} />
-        <Route path="/community" element={isLoggedIn ? <Community /> : <Navigate to="/" replace />} />
-        <Route path="/detail/:id" element={isLoggedIn ? <Detail /> : <Navigate to="/" replace />} />
-        <Route path="/myinfo" element={isLoggedIn ? <MyInfo handleLogout={handleLogout} /> : <Navigate to="/" replace />} />
-        <Route path="/write" element={isLoggedIn ? <Write /> : <Navigate to="/" replace />} />
-        <Route path="/mypost" element={isLoggedIn ? <MyPost /> : <Navigate to="/" replace />} />
-        <Route path="/edit/:id" element={isLoggedIn ? <Edit /> : <Navigate to="/" replace />} />
-      </Routes>
-    </Router>
+        <Routes>
+          <Route
+            path="/"
+            element={isLoggedIn ? <Navigate to="/main" replace /> : <Login setIsLoggedIn={handleLogin} />}
+          />
+          <Route path="/login" element={<Login setIsLoggedIn={handleLogin} />} />
+          <Route path="/main" element={isLoggedIn ? <Main /> : <Navigate to="/" replace />} />
+          <Route path="/signup" element={<SignUp setIsLoggedIn={handleLogin} />} />
+          <Route path="/calendar" element={isLoggedIn ? <Calendar userId={localStorage.getItem('userId')} /> : <Navigate to="/" replace />} />
+          <Route path="/calories" element={isLoggedIn ? <Calories userId={localStorage.getItem('userId')} /> : <Navigate to="/" replace />} />
+          <Route path="/challenge" element={isLoggedIn ? <Challenge /> : <Navigate to="/" replace />} />
+          <Route path="/exercise" element={isLoggedIn ? <Exercise /> : <Navigate to="/" replace />} />
+          <Route path="/community" element={isLoggedIn ? <Community /> : <Navigate to="/" replace />} />
+          <Route path="/detail/:id" element={isLoggedIn ? <Detail /> : <Navigate to="/" replace />} />
+          <Route path="/myinfo" element={isLoggedIn ? <MyInfo handleLogout={handleLogout} /> : <Navigate to="/" replace />} />
+          <Route path="/write" element={isLoggedIn ? <Write /> : <Navigate to="/" replace />} />
+          <Route path="/mypost" element={isLoggedIn ? <MyPost /> : <Navigate to="/" replace />} />
+          <Route path="/edit/:id" element={isLoggedIn ? <Edit /> : <Navigate to="/" replace />} />
+        </Routes>
+      </Router>
+    </DarkModeProvider>
   );
 }
 

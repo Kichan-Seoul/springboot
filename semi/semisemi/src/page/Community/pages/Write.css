@@ -74,4 +74,37 @@
     background-color: #3f528c;
     color: #fff;
   }
+  .dark .write-container {
+    background-color: #1e1e22;
+    color: #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
+  }
+  
+  .dark .write-title-header {
+    color: #ffffff;
+  }
+  
+  .dark .write-input,
+  .dark .write-textarea {
+    background-color: #2c2c30;
+    color: #f0f0f0;
+    border: 1px solid #444;
+  }
+  
+  .dark .write-input:focus,
+  .dark .write-textarea:focus {
+    border: 1px solid #728dff;
+    background-color: #2a2a2a;
+  }
+  
+  .dark .write-button.reset {
+    background-color: #555;
+    color: #ddd;
+  }
+  
+  .dark .write-button.submit {
+    background-color: #5a6de3;
+    color: white;
+  }
   

@@ -15,12 +15,12 @@ const Calories = ({ userId }) => {
   const [pageGroup, setPageGroup] = useState(0);
   const itemsPerPage = 10;
 
-  // ✅ 한국 시간 기준 날짜 반환 함수
+
   const getKSTDateString = () => {
     const now = new Date();
     const utc = now.getTime() + now.getTimezoneOffset() * 60000;
     const kst = new Date(utc + 9 * 60 * 60 * 1000);
-    return kst.toISOString().split('T')[0]; // 'yyyy-mm-dd'
+    return kst.toISOString().split('T')[0];
   };
 
   useEffect(() => {
@@ -87,7 +87,7 @@ const Calories = ({ userId }) => {
 
   const saveFoodLog = () => {
     const todayStr = getKSTDateString();
-    const today = new Date(todayStr); // 자정 기준 Date 객체로 저장
+    const today = new Date(todayStr); 
   
     const allFoods = Object.entries(meals).flatMap(([mealName, foods]) =>
       foods.map((food) => ({

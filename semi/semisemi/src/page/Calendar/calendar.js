@@ -1,15 +1,14 @@
-// 📁 page/Calendar/Calendar.jsx
 import React, { useState, useEffect } from 'react';
 import CalendarComponent from 'react-calendar';
 import axios from 'axios';
-import './calendar.css'; // 원래 css 파일 그대로
+import './calendar.css'; 
 
 function Calendar({ userId }) {
   const [value, setValue] = useState(new Date());
   const [calorieData, setCalorieData] = useState([]);
   const [foodLogs, setFoodLogs] = useState([]);
   const [exerciseLogs, setExerciseLogs] = useState([]);
-  const [exerciseList, setExerciseList] = useState([]); // 운동 목록 추가
+  const [exerciseList, setExerciseList] = useState([]);
 
   const getKSTDateString = (date) => {
     const kst = new Date(date.getTime() - (date.getTimezoneOffset() * 60000));
@@ -27,7 +26,7 @@ function Calendar({ userId }) {
     return entry ? `${entry.totalCalories} kcal` : '기록 없음';
   };
 
-  // 🛠 운동 이름 찾는 함수
+  
   const getExerciseName = (exerciseId) => {
     const exercise = exerciseList.find(ex => ex.id === exerciseId);
     return exercise ? exercise.name : `운동 ID: ${exerciseId}`;
@@ -35,8 +34,6 @@ function Calendar({ userId }) {
 
   useEffect(() => {
     if (!userId) return;
-    
-    // 🛠 운동 목록 불러오기
     axios.get(`http://localhost:8080/exercises`)
       .then((res) => setExerciseList(res.data))
       .catch((err) => console.error('❌ [운동 목록 오류]', err));
@@ -75,15 +72,22 @@ function Calendar({ userId }) {
         calendarType="gregory"
         formatDay={(locale, date) => date.getDate()}
         showNeighboringMonth={false}
-        tileClassName={({ date, view }) => view === 'month' && date.getDay() === 6 ? 'calendar-saturday' : null}
+        tileClassName={({ date, view }) => {
+          if (view === 'month') {
+            if (date.getDay() === 0) return 'calendar-sunday'; 
+            if (date.getDay() === 6) return 'calendar-saturday';
+          }
+          return null;
+        }}
         tileContent={({ date, view }) =>
           view === 'month' && (
-            <div style={{ marginTop: 2, fontSize: '0.75rem', color: '#3f528c' }}>
+            <div style={{ marginTop: 2, fontSize: '0.75rem', color: '#666' }}>
               {getCaloriesForDate(date)}
             </div>
           )
         }
       />
+
 
       <div className="calendar-log-section">
         <h3>📅 {getKSTDateString(value)} 기록</h3>
