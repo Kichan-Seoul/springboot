@@ -1,0 +1,30 @@
+.DiaryItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .img_section {
+    flex: 0 0 60px; 
+    margin-right: 20px; 
+  }
+  
+  .info_section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button_section {
+    flex: 0 0 100px; 
+    text-align: center;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  

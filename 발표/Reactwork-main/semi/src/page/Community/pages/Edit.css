@@ -1,0 +1,123 @@
+.edit-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    gap: 1rem;
+    background-color: #f5f8fa;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    min-height: 500px;
+    position: relative;
+  }
+  
+  .edit-container h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  .edit-container input,
+  .edit-container textarea {
+    width: 95%;
+    padding: 14px 14px 14px 14px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    outline: none;
+    transition: border 0.2s ease;
+  }
+  
+  .edit-container input:focus,
+  .edit-container textarea:focus {
+    border-color: #3d509a;
+  }
+  
+  .edit-container textarea {
+    min-height: 200px;
+    resize: vertical;
+  }
+  
+  .button-row {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    align-self: flex-end;
+    padding-top: 2rem;
+  }
+  
+  .cancel-btn,
+  .update-btn {
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    min-width: 90px;
+  }
+  
+  .cancel-btn {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #b0b0b0;
+  }
+  
+  .update-btn {
+    background-color: #2e5aac;
+    color: white;
+  }
+  
+  .update-btn:hover {
+    background-color: #1f4694;
+  }
+  .dark .edit-container {
+    background-color: #1e1e22;
+    color: #f0f0f0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
+  }
+  
+  .dark .edit-container h2 {
+    color: #ffffff;
+  }
+  
+  .dark .edit-container input,
+  .dark .edit-container textarea {
+    background-color: #2a2a2e;
+    color: #ffffff;
+    border: 1px solid #555;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark .edit-container input:focus,
+  .dark .edit-container textarea:focus {
+    border-color: #709dff;
+  }
+  
+  .dark .cancel-btn {
+    background-color: #555;
+    color: #f0f0f0;
+  }
+  
+  .dark .cancel-btn:hover {
+    background-color: #777;
+  }
+  
+  .dark .update-btn {
+    background-color: #526eff;
+    color: #ffffff;
+  }
+  
+  .dark .update-btn:hover {
+    background-color: #3b57cc;
+  }
+  

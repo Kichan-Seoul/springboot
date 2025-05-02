@@ -1,0 +1,117 @@
+/* App.css */
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #000;
+  color: #f5c518;
+}
+
+.App {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: #111;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+  min-height: 100vh;
+}
+
+.Header {
+  text-align: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 16px;
+}
+
+.Header h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #f5c518;
+}
+
+.Header h2 {
+  margin: 10px 0 0;
+  font-size: 18px;
+  color: #aaa;
+}
+
+.Editor {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.Editor input {
+  flex: 1;
+  padding: 10px;
+  background-color: #222;
+  border: 1px solid #444;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.Editor button {
+  padding: 10px 20px;
+  background-color: #f5c518;
+  border: none;
+  border-radius: 8px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.Editor button:hover {
+  background-color: #ffe25a;
+}
+
+.List {
+  margin-top: 20px;
+}
+
+.List h4 {
+  margin-bottom: 10px;
+  color: #f5c518;
+}
+
+.List input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.TodoItem {
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.TodoItem.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.TodoItem button {
+  background-color: transparent;
+  border: 1px solid #f5c518;
+  border-radius: 6px;
+  color: #f5c518;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.TodoItem button:hover {
+  background-color: #f5c518;
+  color: #000;
+}

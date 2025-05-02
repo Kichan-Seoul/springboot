@@ -1,0 +1,244 @@
+.community-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 4rem;
+  font-family: 'Arial', sans-serif;
+  position: relative;
+}
+
+.community-left {
+  flex: 1;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* 📍 검색 바 */
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  width: 100%;
+  min-width: 500px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #a9c8ff;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+  min-width: 400px;
+}
+
+.search-bar input::placeholder {
+  color: #f0f0f0;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.search-bar-wrapper a {
+  text-decoration: none;
+}
+.write-button {
+  background-color: #3d509a;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 17px;
+  min-width: 90px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.write-button:hover {
+  background-color: #2f3f7f;
+}
+
+.list-container {
+  background-color: #f7f7f7;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+/* 게시글 아이템 */
+.list-item {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.list-item:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.list-item h3 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.list-item p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 👑 랭킹 박스 */
+.rank-box {
+  width: 200px;
+  background-color: #a9c8ff;
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  position: sticky;
+  top: 140px;
+  margin-left: 100px;
+}
+
+.rank-box .crown {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.rank-box ol {
+  list-style: none;
+  padding: 0;
+  color: white;
+  font-weight: bold;
+}
+
+.rank-box ol li {
+  margin: 0.4rem 0;
+}
+
+/* 🔢 페이지네이션 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.pagination button {
+  background-color: #3f528c;
+  padding: 10px 20px;
+  color: white;
+  text-align: center;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #91bde0;
+  color: black;
+}
+
+
+.dark .community-container {
+  background-color: #2a2a2e;
+  color: #f0f0f0;
+}
+
+.dark .community-left {
+  color: #f0f0f0;
+}
+
+.dark .search-bar input {
+  background-color: #3c4b66;
+  color: #fff;
+}
+
+.dark .search-bar input::placeholder {
+  color: #bbb;
+}
+
+.dark .write-button {
+  background-color: #4a5fa2;
+  color: #fff;
+}
+
+.dark .write-button:hover {
+  background-color: #3a4d87;
+}
+
+
+.dark .list-container {
+  background-color: #363636;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark .list-item {
+  background-color: #2e2e32;
+  color: #eee;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .list-item h3 {
+  color: #ffffff;
+}
+
+.dark .list-item p {
+  color: #cccccc;
+}
+
+
+.dark .list-item * {
+  color: #dddddd !important;
+  background: transparent !important;
+}
+
+
+.dark .rank-box {
+  background-color: #3b4f72;
+  color: #fff;
+}
+
+.dark .rank-box ol {
+  color: #fff;
+}
+
+
+.dark .pagination button {
+  background-color: #4e6aad;
+  color: white;
+}
+
+.dark .pagination button:hover {
+  background-color: #7fb2e5;
+  color: black;
+}

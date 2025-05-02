@@ -1,0 +1,142 @@
+.detail {
+    background-color: rgba(255, 255, 255, 0.8); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  
+    border-radius: 12px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 800px;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+
+.dtitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1rem;        
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.dname{
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 1.5rem;  
+}
+
+.dcontent{
+    font-size: 16px;
+    line-height: 1.6;
+    white-space: pre-line;
+    padding: 1rem;
+    background-color: #f9f9f9;    
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+
+}
+
+.detail-btn {
+    background-color: #3d509a;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 17px;
+}
+
+.detail-button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 30px;
+  }
+  
+  .detail-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .detail-button.edit {
+    background-color: #3d509a;  
+    color: white;
+  }
+  
+  .detail-button.edit:hover {
+    background-color: #2c3e7f;
+  }
+  
+  .detail-button.delete {
+    background-color: #ff5b5b;
+    color: white;
+  }
+  
+  .detail-button.delete:hover {
+    background-color: #e03e3e;
+  }
+  .notice-tag {
+    color: red;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  .dark .detail {
+    background-color: rgba(30, 30, 30, 0.85);
+    color: #f0f0f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
+    backdrop-filter: blur(4px);
+  }
+  
+  .dark .dtitle {
+    border-bottom: 1px solid #555;
+    color: #ffffff;
+  }
+  
+  .dark .dname {
+    color: #aaa;
+  }
+  
+  .dark .dcontent {
+    background-color: #1f1f1f;
+    color: #e0e0e0;
+    border: 1px solid #444;
+  }
+  
+  .dark .detail-btn {
+    background-color: #526eff;
+    color: #fff;
+  }
+  
+  .dark .detail-button.edit {
+    background-color: #526eff;
+    color: #fff;
+  }
+  
+  .dark .detail-button.edit:hover {
+    background-color: #3d4de0;
+  }
+  
+  .dark .detail-button.delete {
+    background-color: #ff6666;
+    color: #fff;
+  }
+  
+  .dark .detail-button.delete:hover {
+    background-color: #cc3333;
+  }
+  
+  .dark .notice-tag {
+    background-color: #ffb84d;
+  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 16px;
+  padding: 5px 10px;
+  box-shadow: 0 2px 6px rgba(255, 184, 77, 0.4);
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+  

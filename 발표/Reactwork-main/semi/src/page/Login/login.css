@@ -1,0 +1,116 @@
+
+.login-wrapper {
+  min-height: 100vh;
+  background-color: #e9f1ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.login-card {
+  background-color: white;
+  display: flex;
+  padding: 70px 80px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  gap: 100px; 
+  align-items: center;
+}
+
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.logo-image {
+  width: 260px;
+  height: auto;
+  margin-bottom: 25px;
+}
+
+
+.logo-footer {
+  font-size: 20px; 
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+
+.right-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.input-group {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+
+.input-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px; 
+}
+
+
+.input-group input {
+  width: 320px; 
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #d3e4ff;
+}
+
+
+.login-button,
+.signup-button {
+  width: 320px; 
+  padding: 18px; 
+  margin-top: 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3d5a98;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 80px
+}
+
+.login-button:hover,
+.signup-button:hover {
+  background-color: #2a457a;
+}
+
+.login-button:active,
+.signup-button:active {
+  background-color: #1a2a47;
+}
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+
+body {
+  font-family: 'Gowun Dodum', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+button, .title, .bold, .highlight {
+  font-family: 'Gowun Dodum', sans-serif;
+}

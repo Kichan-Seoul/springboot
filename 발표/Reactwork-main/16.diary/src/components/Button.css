@@ -1,0 +1,68 @@
+.button {
+  background-color: darkgray;
+  color: gold;
+  padding: 10px 20px;
+  border: 2px solid gold;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background-color: gold;
+  color: black;
+  transform: scale(1.1);
+}
+
+.button_green {
+  background-color: green;
+  color: white;
+}
+
+.button_red {
+  background-color: red;
+  color: white;
+}
+
+.button_section button {
+  font-size: 16px;
+  padding: 10px 20px;
+  width: 100%;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.button_section button:nth-child(1),
+.button_section button:nth-child(2) {
+  font-size: 14px;
+  padding: 10px 20px;
+  width: auto;
+}
+
+textarea {
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.left-back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.left-back-button:hover {
+  background-color: darkgreen;
+  transform: scale(1.1);
+}
+

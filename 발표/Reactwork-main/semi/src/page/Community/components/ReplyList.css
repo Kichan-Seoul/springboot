@@ -1,0 +1,159 @@
+.reply-section {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 2px solid #ccc;
+}
+
+.reply-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.reply-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.reply-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reply-button:hover {
+  background-color: #0056b3;
+}
+
+.reply-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.reply-item {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.reply-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.reply-user {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.reply-date {
+  font-size: 12px;
+  color: #888;
+}
+
+.reply-content {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.reply-edit-input {
+  width: 80%;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.reply-actions {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.reply-actions button {
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.reply-actions button:first-child {
+  background-color: #6c757d;
+  color: white;
+}
+
+.reply-actions button:first-child:hover {
+  background-color: #5a6268;
+}
+
+.reply-actions .delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.reply-actions .delete-btn:hover {
+  background-color: #c82333;
+}
+.dark .reply-section {
+  border-top: 2px solid #444;
+}
+
+.dark .reply-input,
+.dark .reply-edit-input {
+  background-color: #2a2a2e;
+  color: #eee;
+  border: 1px solid #555;
+}
+
+.dark .reply-button {
+  background-color: #3f7df4;
+  color: #fff;
+}
+
+.dark .reply-button:hover {
+  background-color: #2c63d4;
+}
+
+.dark .reply-item {
+  background-color: #1e1e22;
+  border: 1px solid #444;
+  color: #e0e0e0;
+}
+
+.dark .reply-date {
+  color: #999;
+}
+
+.dark .reply-actions button:first-child {
+  background-color: #5c636a;
+}
+
+.dark .reply-actions button:first-child:hover {
+  background-color: #4a5057;
+}
+
+.dark .reply-actions .delete-btn {
+  background-color: #b52c3c;
+}
+
+.dark .reply-actions .delete-btn:hover {
+  background-color: #9a1f2e;
+}

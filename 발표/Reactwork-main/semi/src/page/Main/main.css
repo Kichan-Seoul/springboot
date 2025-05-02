@@ -1,0 +1,245 @@
+
+.main-wrapper * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-wrapper {
+  font-family: 'Noto Sans KR', 'Pretendard', sans-serif;
+  background-color: #f5f6fa;
+  color: #2e2e2e;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 0 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.main-user-card {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  width: 100%;
+  max-width: 960px; 
+  margin-bottom: 40px;
+  gap: 20px; 
+}
+
+
+.main-user-info,
+.main-character-wrapper,
+.main-activity-section {
+  flex: 1;
+}
+
+
+.main-user-info h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.main-user-info p {
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.main-badge {
+  background-color: #ffd966;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+
+.main-calories {
+  margin: 20px 0;
+  padding: 12px;
+  background-color: #ffeaea;
+  color: #ff4d4d;
+  font-weight: bold;
+  border-radius: 12px;
+  display: inline-block;
+}
+
+
+.main-character-wrapper img {
+  width: 220px;
+  max-width: 100%; 
+  border-radius: 15px;
+}
+
+
+.main-activity-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-activity-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2e2e2e;
+  margin-bottom: 10px;
+}
+
+.main-exercise-icons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 10px;
+  justify-items: center;
+}
+
+.main-exercise-icons img {
+  width: 50px;
+}
+
+
+.main-graph-wrapper {
+  width: 100%;
+  max-width: 960px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  margin-bottom: 40px;
+}
+
+
+.main-footer {
+  width: 100%;
+  background-color: #2c2c2c;
+  color: #ccc;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 0;
+  box-sizing: border-box;
+}
+
+.main-footer-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.main-footer-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-footer-icon {
+  width: 30px;
+  height: auto;
+}
+
+.main-footer-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ddd;
+}
+
+.main-footer-bottom p {
+  font-size: 12px;
+  color: white;
+  margin-top: 5px;
+}
+
+
+
+@media (max-width: 768px) {
+  .main-user-card {
+    flex-direction: column; 
+    padding: 20px;
+  }
+
+  .main-graph-wrapper {
+    padding: 20px;
+  }
+
+  .main-exercise-icons {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .main-character-wrapper img {
+    width: 140px;
+  }
+
+  .main-footer-top {
+    flex-direction: column;
+  }
+
+  .main-footer-content {
+    flex-direction: column;
+  }
+
+
+}
+body.light, .light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+
+body.dark, .dark {
+  background-color: #2e3036;
+  color: #e0e0e0;
+}
+
+.dark .main-wrapper {
+  background-color: transparent;
+}
+
+.dark .main-user-card,
+.dark .main-graph-wrapper {
+  background-color: #3a3d40;
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.dark .main-user-info h3 {
+  color: #ffffff;
+}
+
+.dark .main-user-info p {
+  color: #cccccc;
+}
+
+.dark .main-badge {
+  background-color: #ffaa00;
+  color: #000;
+}
+
+.dark .main-calories {
+  background-color: #3a1a1a;
+  color: #ff7f7f;
+}
+
+.dark .main-activity-title {
+  color: #ffffff;
+}
+
+.dark .main-footer {
+  background-color: #3a3d40;
+  color: #aaa;
+}
+
+.dark .main-footer-text {
+  color: white;
+}
+
+.dark .main-footer-bottom p {
+  color: white;
+}

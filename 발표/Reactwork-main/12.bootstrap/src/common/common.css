@@ -1,0 +1,29 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #f0f0f0;
+}
+
+header img.logo {
+    height: 50px;
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+header div {
+    display: flex;
+    gap: 10px;
+}
+
+footer {
+    padding: 20px 50px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+}
